@@ -11,38 +11,38 @@ gulp.task('html', function () {
             prefix: '@@',
             basepath: '@file'
         }))
-        .pipe(gulp.dest('doc/'));
+        .pipe(gulp.dest('docs/'));
 });
 
 gulp.task('images', function () {
     return gulp.src('src/assets/images/*.*')
-        .pipe(gulp.dest('doc/images'));
+        .pipe(gulp.dest('docs/images'));
 });
 
 gulp.task('data', function () {
     return gulp.src('src/assets/data/*.*')
-        .pipe(gulp.dest('doc/data'));
+        .pipe(gulp.dest('docs/data'));
 });
 
 gulp.task('config', function () {
     return gulp.src('src/assets/config/**/*.js')
         // .pipe(concat('custom.js')) // 將多個js檔串成一個，打包起來輸出的檔案名稱
         .pipe(terser()) // uglify
-        .pipe(gulp.dest('doc/config')); // 輸出路徑'
+        .pipe(gulp.dest('docs/config')); // 輸出路徑'
 });
 
 gulp.task('js', function () {
     return gulp.src('src/assets/javascripts/**/*.js')
         // .pipe(concat('custom.js')) // 將多個js檔串成一個，打包起來輸出的檔案名稱
         .pipe(terser()) // uglify
-        .pipe(gulp.dest('doc/js')); // 輸出路徑'
+        .pipe(gulp.dest('docs/js')); // 輸出路徑'
 });
 
 gulp.task('js_package', function () {
-    return gulp.src(['node_modules/axios/doc/axios.js', 'node_modules/moment/moment.js'])
+    return gulp.src(['node_modules/axios/dist/axios.js', 'node_modules/moment/moment.js'])
         // .pipe(concat('custom.js')) // 將多個js檔串成一個，打包起來輸出的檔案名稱
         .pipe(terser()) // uglify
-        .pipe(gulp.dest('doc/js')); // 輸出路徑'
+        .pipe(gulp.dest('docs/js')); // 輸出路徑'
 });
 
 gulp.task('styles', function () {
@@ -50,7 +50,7 @@ gulp.task('styles', function () {
         .pipe(gulpSass({ // 編譯 Scss
             outputStyle: 'compressed'
         }))
-        .pipe(gulp.dest('doc/css'));
+        .pipe(gulp.dest('docs/css'));
 });
 
 gulp.task('watch', function () {
