@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "rimraf dist && gulp && node app.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,19 @@
   "bugs": {
     "url": "https://github.com/YingHsuan/taipeistar/issues"
   },
-  "homepage": "https://github.com/YingHsuan/taipeistar#readme"
+  "homepage": "https://github.com/YingHsuan/taipeistar#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "gulp": "^4.0.2"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-file-include": "^2.1.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-terser": "^1.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "moment": "^2.24.0"
+  }
 }
