@@ -6,6 +6,24 @@ app.listen(3000, function () {
     app.get('/', function (req, res) {
         res.sendFile('index.html', { root: __dirname + '/docs' });
     });
+    app.get('/index', function (req, res) {
+        res.sendFile('index.html', { root: __dirname + '/docs' });
+    });
+    app.get('/registered', function (req, res) {
+        res.sendFile('registered.html', {
+            root: __dirname + '/docs'
+        });
+    });
+    app.get('/notice', function (req, res) {
+        res.sendFile('notice.html', {
+            root: __dirname + '/docs'
+        });
+    });
+    app.get('/explanation', function (req, res) {
+        res.sendFile('explanation.html', {
+            root: __dirname + '/docs'
+        });
+    });
 
     // static files
     app.use('/config', express.static('doc/config'));
