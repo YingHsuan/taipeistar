@@ -16,6 +16,9 @@
     <script type="text/javascript" src="./js/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="./js/all.js"></script>
     <script type="text/javascript" src="./js/header_nav.js"></script>
+    <script type="text/javascript" src="./js/axios.js"></script>
+    <script type="text/javascript" src="./js/lodash.js"></script>
+    <script type="text/javascript" src="./js/helper.js"></script>
     <!--[if lt IE 9]>
         <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <![endif]-->
@@ -77,15 +80,15 @@
             <div class="text-box">
                 <div class="q-title"><strong>Q1.您想要報名的行程：</strong></div>
                 <div class="q-content">
-                    <input type="radio">第一航廈團 (每日人數限額200人，50人即成團)<br>
-                    <input type="radio">第二航廈團 (每日人數限額200人，50人即成團)
+                    <input name="planType" type="radio" value="T1" checked>第一航廈團 (每日人數限額200人，50人即成團)<br>
+                    <input name="planType" type="radio" value="T2">第二航廈團 (每日人數限額200人，50人即成團)
                 </div>
                 <img src="images/registered_content_line.png" class="q-line">
                 <div class="q-title"><strong>Q2.您想要報名的日期：</strong>
                     <font class="red">7/23首發團100名額由機場贊助</font>
                 </div>
-                <div class="q-content clearfix">
-                    <div class="column-x2"><input type="checkbox">7/23(四) <font class="red">(剩餘：89人)</font>
+                <div id="available_date" class="q-content clearfix">
+                    <!-- <div class="column-x2"><input type="checkbox">7/23(四) <font class="red">(剩餘：89人)</font>
                     </div>
                     <div class="column-x2"><input type="checkbox">7/30(四) <font class="red">(剩餘：89人)</font>
                     </div>
@@ -106,7 +109,7 @@
                     <div class="column-x2"><input type="checkbox">8/27(四) <font class="red">(剩餘：89人)</font>
                     </div>
                     <div class="column-x2"><input type="checkbox">8/29(六) <font class="red">(剩餘：89人)</font>
-                    </div>
+                    </div> -->
                 </div>
                 <img src="images/registered_content_line.png" class="q-line">
                 <div class="q-title"><strong>Q3.住宿需求：</strong></div>
