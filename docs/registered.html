@@ -118,10 +118,10 @@
                 <img src="images/registered_content_line.png" class="q-line">
                 <div class="q-title"><strong>Q4.參加人數：</strong></div>
                 <div class="q-content clearfix">
-                    <div class="column2"><input type="checkbox">大人 <input type="text" class="num"> 位</div>
-                    <div class="column2"><input type="checkbox">小孩 <input type="text" class="num"> 位(6歲以上～12歲以下)</div>
+                    <div class="column2"><input id="feeByAdultCheck" type="checkbox">大人 <input id="feeByAdult" type="text" class="num"> 位</div>
+                    <div class="column2"><input id="feeByChildCheck" type="checkbox">小孩 <input id="feeByChild" type="text" class="num"> 位(6歲以上～12歲以下)</div>
                     <div class="column3">
-                        <font class="red"><strong>總計費用：&nbsp;&nbsp;4,000&nbsp;&nbsp;NT</strong></font>
+                        <font class="red"><strong>總計費用：&nbsp;&nbsp;<span id="feeByMember"></span>&nbsp;&nbsp;NT</strong></font>
                     </div>
                 </div>
                 <img src="images/registered_content_line.png" class="q-line">
@@ -325,6 +325,7 @@
     </div>
 </section>
 <script src="js/tw-city-selector.js"></script>
+<script src="js/registered.js"></script>
 <script>
     new TwCitySelector();
     var a = new TwCitySelector({
