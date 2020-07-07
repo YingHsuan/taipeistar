@@ -9,6 +9,12 @@ $(document).ready(function () {
         setPlanDate();
     });
     getOrders();
+    $('#search').keyup(function () {
+        var value = $(this).val().toLowerCase();
+        $('#list tr').filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
 });
 function setPlanType(plans) {
     var planTypes = [];
@@ -80,7 +86,7 @@ function getOrders() {
                     '<td>' + order.paymentMerchantTradeNo +'</td>'+
                     '<td>' + order.registrationDate +'</td></tr> '
         })
-        $('#list tr:nth-child(2)').empty();
+        $('#list').empty();
         $('#list').append(orderItem);
     })
 }

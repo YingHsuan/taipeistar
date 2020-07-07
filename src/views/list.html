@@ -48,11 +48,11 @@
                 <option>團4(0人)</option>
             </select>
             <div class="search-box">
-                Search: <input type="search"> <input type="button" value="搜尋">
+                Search: <input id="search" type="search">
             </div>
         </div>
-        <table cellspacing="1" cellpadding="0">
-            <tbody id="list">
+        <table id="search-target" cellspacing="1" cellpadding="0">
+            <thead>
                 <tr>
                     <td>序號</td>
                     <td>行程</td>
@@ -77,6 +77,8 @@
                     <td>綠界<br>交易編號</td>
                     <td>報名時間</td>
                 </tr>
+            </thead>
+            <tbody id="list">
             </tbody>
         </table>
         <div class="submit-bt">

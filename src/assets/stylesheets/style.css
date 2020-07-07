@@ -40,7 +40,7 @@ section#backend-page .select-bar .search-box input[type=button]:hover { backgrou
 section#backend-page table { width: 100%; font-size: 0.9em; line-height: 1.2em; border: 0; background-color: #ccc;}
 section#backend-page table tr:nth-child(odd) { background-color: #f1f1f1;}
 section#backend-page table tr:nth-child(even) { background-color: #fff;}
-section#backend-page table tr:first-child { color: #fff; font-weight: 500; background-color: #999;}
+section#backend-page table thead tr:first-child { color: #fff; font-weight: 500; background-color: #999;}
 section#backend-page table td { padding: 10px 5px; text-align: center;}
 section#backend-page table td select { padding: 2px 5px; margin: 0 5px; color: #414141; font:0.9em "Noto Sans TC", sans-serif, "微軟正黑體", Arial; border: 1px #ccc solid; border-radius: 4px; background-color: #fff;}
 section#backend-page table td input[type=button] { padding: 2px 5px; margin: 0 5px; color: #414141; font:0.9em "Noto Sans TC", sans-serif, "微軟正黑體", Arial; border: 1px #ccc solid; border-radius: 4px; background-color: #eee; cursor: pointer;}
