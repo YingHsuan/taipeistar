@@ -5,6 +5,13 @@ $(document).ready(function () {
     setPlan();
     appendPeopleForm();
 })
+function setTwCitySelector(el) {
+    new TwCitySelector();
+    var a = new TwCitySelector({
+        el: el,
+        hasZipcode: false
+    });
+}
 function countFee() {
     $('#feeByMember').html(0);
     var isFeeByAdultCheck = $('#feeByAdultCheck').prop("checked");
@@ -80,7 +87,7 @@ function appendPeopleForm() {
                 '</div>'+
                 '<div class="caption">地址：</div>' +
                 '<div class="column">'+
-                    '<div id="city-'+numOfPeople+'" role="tw-city-selector" class="twcity"></div>'+
+                    '<div id="city-'+numOfPeople+'" class="twcity"></div>'+
                     '<input id="address-' + numOfPeople + '" type="text" class="add">' +
                     '<font id="error-address-' + numOfPeople + '" class="red error hide">請填寫</font>'+
                 '</div>'+
@@ -96,6 +103,7 @@ function appendPeopleForm() {
                 '</div>'+
             '</div>'
     $('#people-forms').append(item);
+    setTwCitySelector('#city-' + numOfPeople);
 }
 $('#appendForm').click(function() {
     appendPeopleForm();
