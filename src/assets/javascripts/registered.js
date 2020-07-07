@@ -247,5 +247,7 @@ $('#postOrder').click(function() {
         } else {
             alert('請勾選同意');
         }
+    } else {
+        alert('請完成必填欄位');
     }
 });
