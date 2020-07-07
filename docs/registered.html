@@ -10,16 +10,19 @@
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="css/all.css" rel="stylesheet" type="text/css">
     <link href="css/hover.css" rel="stylesheet" type="text/css">
+    <link href="css/validate.css" rel="stylesheet" type="text/css">
     <style type="text/css">
         @import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
     </style>
     <script type="text/javascript" src="./js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="./js/messages_zh_TW.min.js"></script>
     <script type="text/javascript" src="./js/all.js"></script>
     <script type="text/javascript" src="./js/header_nav.js"></script>
     <script type="text/javascript" src="./js/axios.js"></script>
     <script type="text/javascript" src="./js/lodash.js"></script>
     <script type="text/javascript" src="./js/helper.js"></script>
-    <!--[if lt IE 9]>
+<!--[if lt IE 9]>
         <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <![endif]-->
     <!--[if lt IE 9]>
@@ -87,42 +90,22 @@
                 <div class="q-title"><strong>Q2.您想要報名的日期：</strong>
                     <font class="red">7/23首發團100名額由機場贊助</font>
                 </div>
-                <div id="available_date" class="q-content clearfix">
-                    <!-- <div class="column-x2"><input type="checkbox">7/23(四) <font class="red">(剩餘：89人)</font>
-                    </div>
-                    <div class="column-x2"><input type="checkbox">7/30(四) <font class="red">(剩餘：89人)</font>
-                    </div>
-                    <div class="column-x2"><input type="checkbox">8/1(六) <font class="red">(剩餘：89人)</font>
-                    </div>
-                    <div class="column-x2"><input type="checkbox">8/6(四) <font class="red">(剩餘：89人)</font>
-                    </div>
-                    <div class="column-x2"><input type="checkbox">8/8(六) <font class="red">(剩餘：89人)</font>
-                    </div>
-                    <div class="column-x2"><input type="checkbox">8/13(四) <font class="red">(剩餘：89人)</font>
-                    </div>
-                    <div class="column-x2"><input type="checkbox">8/15(六) <font class="red">(剩餘：89人)</font>
-                    </div>
-                    <div class="column-x2"><input type="checkbox">8/20(四) <font class="red">(剩餘：89人)</font>
-                    </div>
-                    <div class="column-x2"><input type="checkbox">8/22(六) <font class="red">(剩餘：89人)</font>
-                    </div>
-                    <div class="column-x2"><input type="checkbox">8/27(四) <font class="red">(剩餘：89人)</font>
-                    </div>
-                    <div class="column-x2"><input type="checkbox">8/29(六) <font class="red">(剩餘：89人)</font>
-                    </div> -->
-                </div>
+                <font class="error-planDate red error hide">請勾選報名日期</font>
+                <div id="available_date" class="q-content clearfix"></div>
                 <img src="images/registered_content_line.png" class="q-line">
                 <div class="q-title"><strong>Q3.住宿需求：</strong></div>
                 <div class="q-content clearfix">
-                    <input type="radio">是 <input type="radio">否<br>
-                    <font class="smaller">若勾選需要住宿，繳費後會給與一組早鳥訂房代碼，提供住宿優惠(<a href="explanation.php"
+                    <input name="accomodation" type="radio" value="true" checked>是 <input name="accomodation" type="radio" value="false">否<br>
+                    <font class="smaller">若勾選需要住宿，繳費後會給與一組早鳥訂房代碼，提供住宿優惠(<a href="./explanation"
                             class="normal-color">詳情見活動辦法</a>)</font>
                 </div>
                 <img src="images/registered_content_line.png" class="q-line">
-                <div class="q-title"><strong>Q4.參加人數：</strong></div>
+                <div class="q-title"><strong>Q4.參加人數：</strong>
+                    <font class="error-numberOfMember red error hide">請輸入參加人數</font>
+                </div>
                 <div class="q-content clearfix">
-                    <div class="column2"><input id="feeByAdultCheck" type="checkbox">大人 <input id="feeByAdult" type="text" class="num"> 位</div>
-                    <div class="column2"><input id="feeByChildCheck" type="checkbox">小孩 <input id="feeByChild" type="text" class="num"> 位(6歲以上～12歲以下)</div>
+                    <div class="column2"><input id="feeByAdultCheck" type="checkbox">大人 <input id="numberOfAdults" type="text" class="num" required> 位</div>
+                    <div class="column2"><input id="feeByChildCheck" type="checkbox">小孩 <input id="numberOfChildren" type="text" class="num"> 位(6歲以上～12歲以下)</div>
                     <div class="column3">
                         <font class="red"><strong>總計費用：&nbsp;&nbsp;<span id="feeByMember"></span>&nbsp;&nbsp;NT</strong></font>
                     </div>
@@ -130,177 +113,14 @@
                 <img src="images/registered_content_line.png" class="q-line">
                 <div class="q-title"><strong>參與團員請詳填個資</strong></div>
                 <!---------- 佪資表格 ---------->
-                <div class="person-table-box">
-                    <div class="caption">主要聯絡人：</div>
-                    <div class="column"><input type="text"></div>
-                    <div class="caption">性別：</div>
-                    <div class="column"><input type="radio">男&nbsp;&nbsp;<input type="radio">女</div>
-                    <div class="caption">出生年月日：</div>
-                    <div class="column birthday">
-                        <input type="text" class="ymd"> 年&nbsp;&nbsp;&nbsp;
-                        <input type="text" class="ymd"> 月&nbsp;&nbsp;&nbsp;
-                        <input type="text" class="ymd"> 日
-                    </div>
-                    <div class="caption">身分證：<br></div>
-                    <div class="column">
-                        <input type="text"><br>
-                        <font class="ssmall">(非本國籍請填寫護照號碼)</font>
-                    </div>
-                    <div class="caption">地址：</div>
-                    <div class="column">
-                        <div role="tw-city-selector" class="twcity"></div>
-                        <input type="text" class="add">
-                    </div>
-                    <div class="caption">電話：</div>
-                    <div class="column"><input type="text"></div>
-                    <div class="caption">Mail：</div>
-                    <div class="column"><input type="text"></div>
-                    <div class="caption">用餐需求：</div>
-                    <div class="column">
-                        <input type="radio">葷&nbsp;&nbsp;&nbsp;
-                        <input type="radio">素&nbsp;&nbsp;&nbsp;
-                        <input type="radio">其他 <input type="text" class="other">
-                    </div>
-                </div>
-                <!---------- 佪資表格 ---------->
-                <div class="person-table-box">
-                    <div class="caption">團員姓名1：</div>
-                    <div class="column"><input type="text"></div>
-                    <div class="caption">性別：</div>
-                    <div class="column"><input type="radio">男&nbsp;&nbsp;<input type="radio">女</div>
-                    <div class="caption">出生年月日：</div>
-                    <div class="column">
-                        <input type="text" class="ymd"> 年&nbsp;&nbsp;&nbsp;
-                        <input type="text" class="ymd"> 月&nbsp;&nbsp;&nbsp;
-                        <input type="text" class="ymd"> 日
-                    </div>
-                    <div class="caption">身分證：<br></div>
-                    <div class="column">
-                        <input type="text"><br>
-                        <font class="ssmall">(非本國籍請填寫護照號碼)</font>
-                    </div>
-                    <div class="caption">地址：</div>
-                    <div class="column">
-                        <div role="tw-city-selector" class="twcity"></div>
-                        <input type="text" class="add">
-                    </div>
-                    <div class="caption">電話：</div>
-                    <div class="column"><input type="text"></div>
-                    <div class="caption">Mail：</div>
-                    <div class="column"><input type="text"></div>
-                    <div class="caption">用餐需求：</div>
-                    <div class="column">
-                        <input type="radio">葷&nbsp;&nbsp;&nbsp;
-                        <input type="radio">素&nbsp;&nbsp;&nbsp;
-                        <input type="radio">其他 <input type="text" class="other">
-                    </div>
-                </div>
-                <!---------- 佪資表格 ---------->
-                <div class="person-table-box">
-                    <div class="caption">團員姓名2：</div>
-                    <div class="column"><input type="text"></div>
-                    <div class="caption">性別：</div>
-                    <div class="column"><input type="radio">男&nbsp;&nbsp;<input type="radio">女</div>
-                    <div class="caption">出生年月日：</div>
-                    <div class="column">
-                        <input type="text" class="ymd"> 年&nbsp;&nbsp;&nbsp;
-                        <input type="text" class="ymd"> 月&nbsp;&nbsp;&nbsp;
-                        <input type="text" class="ymd"> 日
-                    </div>
-                    <div class="caption">身分證：<br></div>
-                    <div class="column">
-                        <input type="text"><br>
-                        <font class="ssmall">(非本國籍請填寫護照號碼)</font>
-                    </div>
-                    <div class="caption">地址：</div>
-                    <div class="column">
-                        <div role="tw-city-selector" class="twcity"></div>
-                        <input type="text" class="add">
-                    </div>
-                    <div class="caption">電話：</div>
-                    <div class="column"><input type="text"></div>
-                    <div class="caption">Mail：</div>
-                    <div class="column"><input type="text"></div>
-                    <div class="caption">用餐需求：</div>
-                    <div class="column">
-                        <input type="radio">葷&nbsp;&nbsp;&nbsp;
-                        <input type="radio">素&nbsp;&nbsp;&nbsp;
-                        <input type="radio">其他 <input type="text" class="other">
-                    </div>
-                </div>
-                <!---------- 佪資表格 ---------->
-                <div class="person-table-box">
-                    <div class="caption">團員姓名3：</div>
-                    <div class="column"><input type="text"></div>
-                    <div class="caption">性別：</div>
-                    <div class="column"><input type="radio">男&nbsp;&nbsp;<input type="radio">女</div>
-                    <div class="caption">出生年月日：</div>
-                    <div class="column">
-                        <input type="text" class="ymd"> 年&nbsp;&nbsp;&nbsp;
-                        <input type="text" class="ymd"> 月&nbsp;&nbsp;&nbsp;
-                        <input type="text" class="ymd"> 日
-                    </div>
-                    <div class="caption">身分證：<br></div>
-                    <div class="column">
-                        <input type="text"><br>
-                        <font class="ssmall">(非本國籍請填寫護照號碼)</font>
-                    </div>
-                    <div class="caption">地址：</div>
-                    <div class="column">
-                        <div role="tw-city-selector" class="twcity"></div>
-                        <input type="text" class="add">
-                    </div>
-                    <div class="caption">電話：</div>
-                    <div class="column"><input type="text"></div>
-                    <div class="caption">Mail：</div>
-                    <div class="column"><input type="text"></div>
-                    <div class="caption">用餐需求：</div>
-                    <div class="column">
-                        <input type="radio">葷&nbsp;&nbsp;&nbsp;
-                        <input type="radio">素&nbsp;&nbsp;&nbsp;
-                        <input type="radio">其他 <input type="text" class="other">
-                    </div>
-                </div>
-                <!---------- 佪資表格 ---------->
-                <div class="person-table-box">
-                    <div class="caption">團員姓名4：</div>
-                    <div class="column"><input type="text"></div>
-                    <div class="caption">性別：</div>
-                    <div class="column"><input type="radio">男&nbsp;&nbsp;<input type="radio">女</div>
-                    <div class="caption">出生年月日：</div>
-                    <div class="column">
-                        <input type="text" class="ymd"> 年&nbsp;&nbsp;&nbsp;
-                        <input type="text" class="ymd"> 月&nbsp;&nbsp;&nbsp;
-                        <input type="text" class="ymd"> 日
-                    </div>
-                    <div class="caption">身分證：<br></div>
-                    <div class="column">
-                        <input type="text"><br>
-                        <font class="ssmall">(非本國籍請填寫護照號碼)</font>
-                    </div>
-                    <div class="caption">地址：</div>
-                    <div class="column">
-                        <div role="tw-city-selector" class="twcity"></div>
-                        <input type="text" class="add">
-                    </div>
-                    <div class="caption">電話：</div>
-                    <div class="column"><input type="text"></div>
-                    <div class="caption">Mail：</div>
-                    <div class="column"><input type="text"></div>
-                    <div class="caption">用餐需求：</div>
-                    <div class="column">
-                        <input type="radio">葷&nbsp;&nbsp;&nbsp;
-                        <input type="radio">素&nbsp;&nbsp;&nbsp;
-                        <input type="radio">其他 <input type="text" class="other">
-                    </div>
-                </div>
+                <div id="people-forms"></div>
                 <div class="table-note">
-                    若欄位不夠使用，請點選+號&nbsp;<a href=""><img src="images/icon_plus_orange.png"></a>
+                    若欄位不夠使用，請點選+號&nbsp;<a><img id="appendForm" src="images/icon_plus_orange.png"></a>
                 </div>
                 <img src="images/registered_content_line.png" class="q-line">
                 <div class="q-title"><strong>Q5.是否同意個資條款：</strong></div>
                 <div class="q-content clearfix">
-                    <input type="radio">同意 <input type="radio">不同意<br>
+                    <input name="agree" type="radio" value="true">同意 <input name="agree" type="radio" value="false" checked>不同意<br>
                     <a class="read-terms">閱讀個資條款</a>
                     <div class="privacy-content">
                         個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容<br>
@@ -309,7 +129,7 @@
                 </div>
             </div>
             <!-------------- /table form -------------->
-            <a href=""><img src="images/registered_bt.png" class="regi-submit-bt"></a>
+            <a><img id="postOrder" src="images/registered_bt.png" class="regi-submit-bt"></a>
             <img src="images/registered_text_illu.png" class="regi-illu">
         </div>
         <div class="bg-down"><img src="images/text_content_down_bg.png" class="text-content-bottom"></div>

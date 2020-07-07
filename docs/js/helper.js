@@ -1,1 +1,1 @@
-function getPlan(){return axios.get("/api/plans",{headers:{"Content-Type":"application/json"}}).catch((function(n){console.log(n)}))}
+function getPlan(){return axios.get("/api/plans",{headers:{"Content-Type":"application/json"}}).catch((function(n){console.log(n)}))}function postOrder(n){return axios.post("/api/orders",n,{headers:{"Content-Type":"application/json"}}).catch((function(n){console.log(n)}))}
