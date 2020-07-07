@@ -133,11 +133,11 @@ function checkFormValid() {
         } else {
             $('#error-name-' + p).addClass('hide');
         }
-        if (dateOfBirth.length != 11) {
+        if (dateOfBirth.length != 10) {
             $('#error-dateOfBirth-' + p).removeClass('hide');
             isError = true;
         } else {
-           $('#error-dateOfBirth-' + p).addClass('hide');
+            $('#error-dateOfBirth-' + p).addClass('hide');
         }
         if (numberOfIdCard == '') {
            $('#error-numberOfIdCard-' + p).removeClass('hide');

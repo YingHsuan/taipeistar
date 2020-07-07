@@ -1,3 +1,6 @@
+.error {
+    padding-left: 5px;
+}
 .error.hide {
     display: none;
 }
