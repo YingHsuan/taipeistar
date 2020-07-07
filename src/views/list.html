@@ -13,7 +13,11 @@
         @import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
     </style>
     <script src="js/jquery-2.0.3.min.js"></script>
-    <script type="text/javascript" src="js/all.js"></script>
+    <script type="text/javascript" src="./js/all.js"></script>
+    <script type="text/javascript" src="./js/axios.js"></script>
+    <script type="text/javascript" src="./js/lodash.js"></script>
+    <script type="text/javascript" src="./js/helper.js"></script>
+    <script type="text/javascript" src="./js/list.js"></script>
     <!--[if lt IE 9]>
         <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <![endif]-->
@@ -34,23 +38,8 @@
 <body>
     <section id="backend-page">
         <div class="select-bar">
-            <select>
-                <option>T1</option>
-                <option>T2</option>
-            </select>
-            <select>
-                <option>7/23(四)</option>
-                <option>7/30(四)</option>
-                <option>8/1(六)</option>
-                <option>8/6(四)</option>
-                <option>8/8(六)</option>
-                <option>8/13(四)</option>
-                <option>8/15(六)</option>
-                <option>8/20(四)</option>
-                <option>8/22(六)</option>
-                <option>8/27(四)</option>
-                <option>8/29(六)</option>
-            </select>
+            <select id="planType"></select>
+            <select id="planDate"></select>
             <select>
                 <option>未配團(31人)</option>
                 <option>團1(50人)</option>

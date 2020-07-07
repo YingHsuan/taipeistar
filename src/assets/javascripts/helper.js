@@ -7,6 +7,15 @@ function getPlan() {
         console.log(error);
     });
 }
+function getOrder() {
+    return axios.get('/api/orders', {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
 function postOrder(payload) {
    return axios.post('/api/orders', payload, {
        headers: {
