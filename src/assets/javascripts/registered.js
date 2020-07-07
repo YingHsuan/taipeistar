@@ -35,7 +35,7 @@ function appendAvailableDate(dates) {
         var remainingQuota = v.remainingQuota;
         var day = v.dayOfWeek;
         var id = v.id;
-        item += '<div class="column-x2"><input name="planDate" id="' + id + '" type="checkbox">' + date + '(' + day + ')<font class="red">(剩餘：' + remainingQuota + '人)</font></div>'
+        item += '<div class="column-x2"><input name="planDate" id="' + id + '" type="radio" value="'+id+'">' + date + '(' + day + ')<font class="red">(剩餘：' + remainingQuota + '人)</font></div>'
     })
     $('#available_date').empty();
     $('#available_date').append(item);
