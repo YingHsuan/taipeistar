@@ -13,7 +13,11 @@
         @import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
     </style>
     <script src="js/jquery-2.0.3.min.js"></script>
-    <script type="text/javascript" src="js/all.js"></script>
+    <script type="text/javascript" src="./js/all.js"></script>
+    <script type="text/javascript" src="./js/axios.js"></script>
+    <script type="text/javascript" src="./js/lodash.js"></script>
+    <script type="text/javascript" src="./js/helper.js"></script>
+    <script type="text/javascript" src="./js/list.js"></script>
     <!--[if lt IE 9]>
         <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <![endif]-->
@@ -34,23 +38,8 @@
 <body>
     <section id="backend-page">
         <div class="select-bar">
-            <select>
-                <option>T1</option>
-                <option>T2</option>
-            </select>
-            <select>
-                <option>7/23(四)</option>
-                <option>7/30(四)</option>
-                <option>8/1(六)</option>
-                <option>8/6(四)</option>
-                <option>8/8(六)</option>
-                <option>8/13(四)</option>
-                <option>8/15(六)</option>
-                <option>8/20(四)</option>
-                <option>8/22(六)</option>
-                <option>8/27(四)</option>
-                <option>8/29(六)</option>
-            </select>
+            <select id="planType"></select>
+            <select id="planDate"></select>
             <select>
                 <option>未配團(31人)</option>
                 <option>團1(50人)</option>
@@ -59,11 +48,11 @@
                 <option>團4(0人)</option>
             </select>
             <div class="search-box">
-                Search: <input type="search"> <input type="button" value="搜尋">
+                Search: <input id="search" type="search">
             </div>
         </div>
-        <table cellspacing="1" cellpadding="0">
-            <tbody>
+        <table id="search-target" cellspacing="1" cellpadding="0">
+            <thead>
                 <tr>
                     <td>序號</td>
                     <td>行程</td>
@@ -88,273 +77,8 @@
                     <td>綠界<br>交易編號</td>
                     <td>報名時間</td>
                 </tr>
-                <tr>
-                    <td>T10001</td>
-                    <td>
-                        <select>
-                            <option>T1</option>
-                            <option>T2</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select>
-                            <option>7/23(四)</option>
-                            <option>7/30(四)</option>
-                            <option>8/1(六)</option>
-                            <option>8/6(四)</option>
-                            <option>8/8(六)</option>
-                            <option>8/13(四)</option>
-                            <option>8/15(六)</option>
-                            <option>8/20(四)</option>
-                            <option>8/22(六)</option>
-                            <option>8/27(四)</option>
-                            <option>8/29(六)</option>
-                        </select>
-                    </td>
-                    <td>小小胡</td>
-                    <td>testtest@test.com</td>
-                    <td>2</td>
-                    <td>2</td>
-                    <td>4</td>
-                    <td>有</td>
-                    <td>
-                        <select>
-                            <option>xxxx</option>
-                        </select>
-                    </td>
-                    <td><input type="button" value="查詢"></td>
-                    <td>7/30併團</td>
-                    <td>成功</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>T10002</td>
-                    <td>
-                        <select>
-                            <option>T1</option>
-                            <option>T2</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select>
-                            <option>7/23(四)</option>
-                            <option>7/30(四)</option>
-                            <option>8/1(六)</option>
-                            <option>8/6(四)</option>
-                            <option>8/8(六)</option>
-                            <option>8/13(四)</option>
-                            <option>8/15(六)</option>
-                            <option>8/20(四)</option>
-                            <option>8/22(六)</option>
-                            <option>8/27(四)</option>
-                            <option>8/29(六)</option>
-                        </select>
-                    </td>
-                    <td>小小胡</td>
-                    <td>&nbsp;</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>6</td>
-                    <td>無</td>
-                    <td>
-                        <select>
-                            <option>xxxx</option>
-                        </select>
-                    </td>
-                    <td><input type="button" value="查詢"></td>
-                    <td>&nbsp;</td>
-                    <td>成功</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>T10003</td>
-                    <td>
-                        <select>
-                            <option>T1</option>
-                            <option>T2</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select>
-                            <option>7/23(四)</option>
-                            <option>7/30(四)</option>
-                            <option>8/1(六)</option>
-                            <option>8/6(四)</option>
-                            <option>8/8(六)</option>
-                            <option>8/13(四)</option>
-                            <option>8/15(六)</option>
-                            <option>8/20(四)</option>
-                            <option>8/22(六)</option>
-                            <option>8/27(四)</option>
-                            <option>8/29(六)</option>
-                        </select>
-                    </td>
-                    <td>小小胡</td>
-                    <td>&nbsp;</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>有</td>
-                    <td>
-                        <select>
-                            <option>xxxx</option>
-                        </select>
-                    </td>
-                    <td><input type="button" value="查詢"></td>
-                    <td>7/31打來取消</td>
-                    <td>取消</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>
-                        <select>
-                            <option>xxxx</option>
-                        </select>
-                    </td>
-                    <td><input type="button" value="查詢"></td>
-                    <td>&nbsp;</td>
-                    <td>成功</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>
-                        <select>
-                            <option>xxxx</option>
-                        </select>
-                    </td>
-                    <td><input type="button" value="查詢"></td>
-                    <td>&nbsp;</td>
-                    <td>成功</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>
-                        <select>
-                            <option>xxxx</option>
-                        </select>
-                    </td>
-                    <td><input type="button" value="查詢"></td>
-                    <td>&nbsp;</td>
-                    <td>成功</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>
-                        <select>
-                            <option>xxxx</option>
-                        </select>
-                    </td>
-                    <td><input type="button" value="查詢"></td>
-                    <td>&nbsp;</td>
-                    <td>成功</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>
-                        <select>
-                            <option>xxxx</option>
-                        </select>
-                    </td>
-                    <td><input type="button" value="查詢"></td>
-                    <td>&nbsp;</td>
-                    <td>成功</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>
-                        <select>
-                            <option>xxxx</option>
-                        </select>
-                    </td>
-                    <td><input type="button" value="查詢"></td>
-                    <td>&nbsp;</td>
-                    <td>成功</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>
-                        <select>
-                            <option>xxxx</option>
-                        </select>
-                    </td>
-                    <td><input type="button" value="查詢"></td>
-                    <td>&nbsp;</td>
-                    <td>成功</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
+            </thead>
+            <tbody id="list">
             </tbody>
         </table>
         <div class="submit-bt">
