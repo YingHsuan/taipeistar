@@ -11,13 +11,13 @@ function countFee() {
     var isFeeByChildCheck = $('#feeByChildCheck').prop("checked");
     if (isFeeByAdultCheck) {
         var fee = parseInt($('#feeByMember').html());
-        var numberOfAdults = parseInt($('#numberOfAdults').val());
+        var numberOfAdults = parseInt($('#numberOfAdults').val() ? $('#numberOfAdults').val():0);
         fee += numberOfAdults * feeForAdult;
         $('#feeByMember').html(fee);
     }
     if (isFeeByChildCheck) {
         var fee = parseInt($('#feeByMember').html());
-        var numberOfChildren = parseInt($('#numberOfChildren').val());
+        var numberOfChildren = parseInt($('#numberOfChildren').val() ? $('#numberOfChildren').val():0);
         fee += numberOfChildren * feeForChild;
         $('#feeByMember').html(fee);
     }
@@ -110,7 +110,15 @@ function checkFormValid() {
        $('.error-planDate').addClass('hide');
     }
     // Q4
-    if ($('#numberOfAdults').val() == '' && $('#numberOfChildren').val() == '') {
+    var isFeeByAdultCheck = $('#feeByAdultCheck').prop("checked");
+    var isFeeByChildCheck = $('#feeByChildCheck').prop("checked");
+    if (!isFeeByAdultCheck && !isFeeByChildCheck) {
+        $('.error-numberOfMember').removeClass('hide');
+        isError = true;
+    } else if (isFeeByAdultCheck && $('#numberOfAdults').val() == '') {
+        $('.error-numberOfMember').removeClass('hide');
+        isError = true;
+    } else if (isFeeByChildCheck && $('#numberOfChildren').val() == '') {
         $('.error-numberOfMember').removeClass('hide');
         isError = true;
     } else {
@@ -213,11 +221,10 @@ $('#postOrder').click(function() {
                 "comment": "",
                 "accomodation": accomodation
             };
-            console.log(payload);
-            // postOrder(payload)
-            //     .then(function (res) {
-            //         console.log(res);
-            //     })
+            postOrder(payload)
+                .then(function (res) {
+                    console.log(res);
+                })
         } else {
             alert('請勾選同意');
         }
