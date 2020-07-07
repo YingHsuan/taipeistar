@@ -174,22 +174,22 @@ $('#postOrder').click(function() {
         if (agree) {
             var planType = $('input[name="planType"]:checked').val();
             var planDate = $('input[name="planDate"]:checked').val();
-            var numberOfAdults = parseInt($('#numberOfAdults').val());
-            var numberOfChildren = parseInt($('#numberOfChildren').val());
+            var numberOfAdults = parseInt($('#numberOfAdults').val() ? $('#numberOfAdults').val() :0);
+            var numberOfChildren = parseInt($('#numberOfChildren').val() ? $('#numberOfChildren').val():0);
             var accomodation = JSON.parse($('input[name="accomodation"]:checked').val());
             var persons = [];
             var numOfPeople = $('.person-table-box').length;
             for (p = 0; p < numOfPeople; p++) {
                 var name = $('#name-' + p).val();
-                var gender = $('input[name="gender-' + p + ']:checked').val();
-                var dateOfBirth = $('#dateOfBirthYear-' + p).val() + '-' + $('#dateOfBirthMonth-' + p).val() + $('#dateOfBirthDay-' + p).val();
+                var gender = $('input[name="gender-' + p + '"]:checked').val();
+                var dateOfBirth = $('#dateOfBirthYear-' + p).val() + '-' + $('#dateOfBirthMonth-' + p).val() + '-' + $('#dateOfBirthDay-' + p).val();
                 var numberOfIdCard = $('#numberOfIdCard-'+p).val();
                 var city_country = $('#city-' + p + ' .county').val();
                 var city_district = $('#city-' + p + ' .district').val();
                 var address = $('#address-'+p).val();
                 var phone = $('#phone-'+p).val();
                 var email = $('#email-'+p).val();
-                var eatingHabits = $('input[name="eatingHabits-' + p + ']:checked').val();
+                var eatingHabits = $('input[name="eatingHabits-' + p + '"]:checked').val();
 
                 var person = {};
                 person = {
