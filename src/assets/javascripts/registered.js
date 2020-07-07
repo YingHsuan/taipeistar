@@ -42,7 +42,7 @@ function appendAvailableDate(dates) {
         var remainingQuota = v.remainingQuota;
         var day = v.dayOfWeek;
         var id = v.id;
-        item += '<div class="column-x2"><input name="planDate" id="' + id + '" type="radio" value="'+id+'">' + date + '(' + day + ')<font class="red">(剩餘：' + remainingQuota + '人)</font></div>'
+        item += '<div class="column-x2"><input name="planDate" id="' + id + '" type="radio" value="'+date+'">' + date + '(' + day + ')<font class="red">(剩餘：' + remainingQuota + '人)</font></div>'
     })
     $('#available_date').empty();
     $('#available_date').append(item);
@@ -176,6 +176,9 @@ function checkFormValid() {
         if (email.length == 0) {
             $('#error-email-' + p).removeClass('hide');
             isError = true;
+        } else if (!ValidateEmail(email)) {
+           $('#error-email-' + p).removeClass('hide');
+           isError = true;
         } else {
             $('#error-email-' + p).addClass('hide');
         }
@@ -232,6 +235,11 @@ $('#postOrder').click(function() {
             postOrder(payload)
                 .then(function (res) {
                     console.log(res);
+                    data = res.data;
+                    if (data.message == 'goToPay') {
+                        var formObject = data.paymentHtml;
+                        goToPay(formObject);
+                    }
                 })
         } else {
             alert('請勾選同意');

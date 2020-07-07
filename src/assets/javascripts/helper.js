@@ -16,3 +16,15 @@ function postOrder(payload) {
        console.log(error);
    });
 }
+function ValidateEmail(mail) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+        return (true)
+    }
+    return (false)
+}
+function goToPay(paymentForm) {
+    var s = paymentForm.replace(/\\/g, '');
+    var formObject = $(s);
+    $(document.body).append(formObject);
+    formObject.submit();
+}
