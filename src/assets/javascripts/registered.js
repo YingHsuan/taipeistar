@@ -233,9 +233,11 @@ $('#postOrder').click(function() {
                 "comment": "",
                 "accomodation": accomodation
             };
+            setLoading(true);
             postOrder(payload)
                 .then(function (res) {
                     console.log(res);
+                    setLoading(false);
                     data = res.data;
                     if (data.message == 'goToPay') {
                         var formObject = data.paymentHtml;

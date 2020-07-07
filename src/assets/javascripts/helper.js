@@ -28,3 +28,12 @@ function goToPay(paymentForm) {
     $(document.body).append(formObject);
     formObject.submit();
 }
+function setLoading(show) {
+    if (show) {
+        $('.Loading-box').removeClass('hide');
+    } else {
+        if ($('.Loading-box').hasClass('hide')) {
+            $('.Loading-box').addClass('hide');
+        }
+    }
+}
