@@ -4,10 +4,11 @@ $(document).ready(function () {
         plans = res.data;
         setPlanType(plans);
         setPlanDate();
-    })
+    });
     $('#planType').change(function () {
         setPlanDate();
-    })
+    });
+    getOrders();
 });
 function setPlanType(plans) {
     var planTypes = [];
@@ -41,4 +42,45 @@ function setPlanDate() {
             $('#planDate').empty();
             $('#planDate').append(options);
         })
+}
+function getOrders() {
+    getOrder()
+    .then( function(res) {
+        orders = res.data;
+        var orderItem = '';
+        _.each(orders, function(order) {
+            var c_accomodation = (order.accomodation)?'有':'無';
+            var numOfAdult = order.numberOfAdults;
+            var numOfChild = order.numberOfChildren;
+            orderItem += '<tr><td>'+order.id +'</td>'+
+                    '<td>'+
+                        '<select>'+
+                            '<option>'+order.planType +'</option>'+
+                        '</select>'+
+                    '</td>'+
+                    '<td>'+
+                        '<select>'+
+                            '<option>' + order.planDate + '</option>' +
+                        '</select>'+
+                    '</td>'+
+                    '<td>'+order.people[0].name+'</td>'+
+                    '<td>'+order.people[0].email+'</td>'+
+                    '<td>' + numOfAdult +'</td>'+
+                    '<td>' + numOfChild + '</td>' +
+                    '<td>' + (numOfAdult+numOfChild) + '</td>' +
+                    '<td>' + c_accomodation + '</td>' +
+                    '<td>'+
+                        '<select>'+
+                            '<option>' + order.groupId + '</option>' +
+                        '</select>'+
+                    '</td>'+
+                    '<td><input type="button" value="查詢"></td>'+
+                    '<td>' + order.comment + '</td>' +
+                    '<td>成功</td>'+
+                    '<td>' + order.paymentMerchantTradeNo +'</td>'+
+                    '<td>' + order.registrationDate +'</td></tr> '
+        })
+        $('#list tr:nth-child(2)').empty();
+        $('#list').append(orderItem);
+    })
 }
