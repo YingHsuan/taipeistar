@@ -4,3 +4,6 @@
 .error.hide {
     display: none;
 }
+#postOrder:hover {
+    cursor: pointer;
+}
