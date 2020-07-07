@@ -5,6 +5,7 @@ $(document).ready(function () {
     setPlan();
     appendPeopleForm();
 })
+
 function setTwCitySelector(el) {
     new TwCitySelector();
     var a = new TwCitySelector({
@@ -32,7 +33,7 @@ function countFee() {
 $('#feeByAdultCheck, #feeByChildCheck').change(function() {
     countFee();
 })
-$('#feeByAdult, #feeByChild').keyup(function (e) {
+$('#numberOfAdults, #numberOfChildren').keyup(function (e) {
     countFee();
 })
 function appendAvailableDate(dates) {
