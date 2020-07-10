@@ -29,6 +29,11 @@ app.listen(3000, function () {
             root: __dirname + '/docs'
         });
     });
+    app.get('/team_info', function (req, res) {
+        res.sendFile('team_info.html', {
+            root: __dirname + '/docs'
+        });
+    });
 
     // static files
     app.use('/config', express.static('doc/config'));

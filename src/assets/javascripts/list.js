@@ -26,7 +26,7 @@ $(document).ready(function () {
 });
 function setPlanType(plans) {
     var planTypes = [];
-    var options = '<option selected>請選擇</option>';
+    var options = '<option selected>不限</option>';
     _.each(plans, function(plan){
     var planType = plan.planType;
     if (!planTypes.includes(planType)) {
@@ -44,7 +44,7 @@ function setPlanDate() {
             var planType = $('#planType').val();
             plans = _.filter(plans, {'planType': planType})
             var planDates = [];
-            var options = '<option selected>請選擇</option>';
+            var options = '<option selected>不限</option>';
             _.each(plans, function (plan) {
                 var planDate = plan.date;
                 var dayOfWeek = plan.dayOfWeek;
@@ -63,20 +63,26 @@ function setPlanGroup() {
         "planType": $('#planType').val(),
         "planDate": $('#planDate').val(),
     }
-    var options = '<option selected>請選擇</option>';
-    getGroupInPlan(params)
-        .then(function (res) {
-            var groups = res.data;
-            _.each(groups, function(value, id) {
-                options += '<option value="'+ id+ '">' + id+'('+value+'人)' +'</option>';
+    var options = '<option selected>不限</option>';
+    if ($('#planType').val() == '不限' || $('#planDate').val() == '不限') {
+        $('#planGroup').empty();
+        $('#planGroup').append(options);
+    } else {
+        getGroupInPlan(params)
+            .then(function (res) {
+                var groups = res.data;
+                _.each(groups, function (value, id) {
+                    options += '<option value="' + id + '">' + id + '(' + value + '人)' + '</option>';
+                })
+                $('#planGroup').empty();
+                $('#planGroup').append(options);
             })
-            $('#planGroup').empty();
-            $('#planGroup').append(options);
-        })
-        .catch(function () {
-            $('#planGroup').empty();
-            $('#planGroup').append(options);
-        })
+            .catch(function () {
+                $('#planGroup').empty();
+                $('#planGroup').append(options);
+            })
+    }
+    
 }
 function getAvailablePlans() {
     getAvailablePlan()
@@ -106,17 +112,17 @@ function getOrders(availablePlans) {
         var selectedPlanType = $('#planType').val();
         var selectedPlanDate = $('#planDate').val();
         var selectedPlanGroup = $('#planGroup').val();
-        if (selectedPlanType != '請選擇') {
+        if (selectedPlanType != '不限') {
             orders = _.filter(orders, {
                 'planType': selectedPlanType
             });
         };
-        if (selectedPlanDate != '請選擇') {
+        if (selectedPlanDate != '不限') {
             orders = _.filter(orders, {
                 'planDate': selectedPlanDate
             });
         };
-        if (selectedPlanGroup != '請選擇') {
+        if (selectedPlanGroup != '不限') {
             orders = _.filter(orders, {
                 'groupName': selectedPlanGroup
             });
@@ -164,7 +170,7 @@ function getOrders(availablePlans) {
                             groupOptions +
                         '</select>'+
                     '</td>'+
-                    '<td><input type="button" value="查詢"></td>'+
+                    '<td><div class="search-infor-bt"><a data-fancybox data-type="iframe" data-src="team_info" href="javascript:;">查詢</a></div></td>' +
                     '<td><textarea>' + order.comment + '</textarea></td>' +
                     '<td>成功</td>'+
                     '<td>' + order.paymentMerchantTradeNo +'</td>'+
