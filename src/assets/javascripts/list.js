@@ -1,5 +1,7 @@
 var resultAvailablePlanType = [];
 var resultAvailablePlanDate = [];
+var feeForAdult = 1000;
+var feeForChild = 800;
 $(document).ready(function () {
     getPlan()
     .then( function(res){
@@ -23,6 +25,7 @@ $(document).ready(function () {
         getAvailablePlans();
     })
     getAvailablePlans();
+    // $.fancybox.open('<div class="message"><h2>Hello!</h2><p>You are awesome!</p></div>');
 });
 function setPlanType(plans) {
     var planTypes = [];
@@ -170,7 +173,7 @@ function getOrders(availablePlans) {
                             groupOptions +
                         '</select>'+
                     '</td>'+
-                    '<td><div class="search-infor-bt"><a data-fancybox data-type="iframe" data-src="team_info" href="javascript:;">查詢</a></div></td>' +
+                    '<td><input id="getInfo_'+ order.id +'" type="button" value="查詢" data-order-id="' + order.id +'"></td>' +
                     '<td><textarea>' + order.comment + '</textarea></td>' +
                     '<td>成功</td>'+
                     '<td>' + order.paymentMerchantTradeNo +'</td>'+
@@ -218,5 +221,118 @@ function getOrders(availablePlans) {
                     $('#select_group_' + orderId).append(newGroupOptions);
                 })
         })
+        $("input[id^='getInfo_']").click(function (e) {
+            var orderId = e.target.dataset.orderId;
+            setInfo(orderId);
+        })
     })
+}
+
+// update team-info
+function setInfo(orderId) {
+    getOrderById(orderId)
+        .then( function(res) {
+            var info = res.data;
+            var orderId = info.id;
+            var planType = '';
+            if (info.planType == 'T1') {
+                planType = '第一航廈團';
+            } else if (info.planType == 'T2') {
+                planType = '第二航廈團';
+            }
+            var planDate = info.planDate;
+            var c_accomodation = (info.accomodation)?'有':'無';
+            var numberOfAdults = info.numberOfAdults;
+            var numberOfChildren = info.numberOfChildren;
+            var groupName = info.groupName;
+            var comment = info.comment;
+            var paymentDone = (info.paymentDone)?'成功':'取消';
+            var paymentMerchantTradeNo = info.paymentMerchantTradeNo;
+            var registrationDate = info.registrationDate;
+            var person = '';
+            _.each(info.people, function(p, index) {
+                var name_title = '';
+                if (index == 0) {
+                    name_title = '主要連絡人';
+                } else {
+                    name_title = '團員姓名'+index;
+                }
+                var name = p.name;
+                var gender = p.gender;
+                if (p.gender == 'M') {
+                    gender = '男';
+                } else if (p.gender == 'F') {
+                    gender = '女';
+                }
+                var dateOfBirth = p.dateOfBirth;
+                var numberOfIdCard = p.numberOfIdCard;
+                var address = p.address;
+                var phone = p.phone;
+                var email = p.email;
+                var eatingHabits = p.eatingHabits;
+                
+                person += 
+                    '<div class="column-half">'+
+                        '<div class="caption">'+name_title+'：</div>'+
+                        '<div class="column">'+name+'</div>'+
+                        '<div class="caption">性別：</div>'+
+                        '<div class="column">'+gender+'</div>'+
+                        '<div class="caption">出生年月日：</div>'+
+                        '<div class="column">' + dateOfBirth + '</div>' +
+                        '<div class="caption">身分證：</div>'+
+                        '<div class="column">' + numberOfIdCard + '</div>' +
+                        '<div class="caption">地址：</div>'+
+                        '<div class="column">' + address + '</div>' +
+                        '<div class="caption">電話：</div>'+
+                        '<div class="column">' + phone + '</div>' +
+                        '<div class="caption">Mail：</div>' +
+                        '<div class="column">'+ email +'</div>' +
+                        '<div class="caption">用餐需求：</div>' +
+                        '<div class="column">' + eatingHabits + '</div>' +
+                    '</div>'
+                
+            })
+            var info = 
+                '<section id="team-infor-page">'+
+                    '<div class="title">報名詳細資料</div>'+
+                    '<div class="column-half">'+
+                        '<strong>序號：</strong>'+orderId+
+                    '</div>'+
+                    '<div class="column-half">'+
+                        '<strong>報名行程：</strong>'+planType+
+                    '</div>'+
+                    '<div class="column-half">'+
+                        '<strong>報名時段：</strong>'+planDate+
+                    '</div>'+
+                    '<div class="column-half">'+
+                        '<strong>住宿需求：</strong>'+c_accomodation+
+                    '</div>'+
+                    '<div class="column-half">'+
+                        '<strong>參加人數：</strong>大人 '+numberOfAdults+' 位, 小孩 '+numberOfChildren+' 位, 總共 '+(numberOfAdults+numberOfChildren)+' 人'+
+                    '</div>'+
+                    '<div class="column-half">'+
+                        '<strong>團號分配：</strong>'+groupName+
+                    '</div>'+
+                    '<div class="column-half">'+
+                        '<strong>備註：</strong>'+comment+
+                    '</div>'+
+                    '<div class="column-half">'+
+                        '<strong>報名成功/取消：</strong>' + paymentDone +
+                    '</div>'+
+                    '<div class="column-half">'+
+                        '<strong>綠界訂單編號：</strong>' + paymentMerchantTradeNo +
+                    '</div>'+
+                    '<div class="column-half">'+
+                        '<strong>報名時間：</strong>' + registrationDate +
+                    '</div>'+
+                    '<div class="column-full" style="text-align:right;">'+
+                        '<font class="red"><strong>總計費用：</strong>'+ (numberOfAdults*feeForAdult + numberOfChildren*feeForChild) +'NT</font>'+
+                    '</div>'+
+                    '<div class="column-full">'+
+                        '<strong>參與團員請詳填個資</strong>'+
+                    '</div>'+
+                    person +
+                '</section>'
+            $.fancybox.open(info);
+        })
 }

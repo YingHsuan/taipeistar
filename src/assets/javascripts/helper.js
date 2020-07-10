@@ -44,6 +44,15 @@ function getOrder() {
         console.log(error);
     });
 }
+function getOrderById(id) {
+    return axios.get('/api/orders/' + id, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
 function postOrder(payload) {
    return axios.post('/api/orders', payload, {
        headers: {
