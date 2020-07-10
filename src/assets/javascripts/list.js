@@ -369,7 +369,8 @@ function saveInfo(orderId) {
     }
     patchOrderById(orderId, payload)
         .then(function(res) {
-            console.log(res);
+            alert('儲存成功');
+            location.reload();
         })
 }
 function sendMail() {
@@ -384,5 +385,6 @@ function sendMail() {
     postGroupMailNotification(payload)
         .then(function(res) {
             console.log(res);
+            alert('發送成功');
         })
 }
