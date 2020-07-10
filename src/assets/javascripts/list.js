@@ -10,6 +10,9 @@ $(document).ready(function () {
     $('#planType').change(function () {
         setPlanDate();
     });
+    $('#planDate').change(function () {
+        setPlanGroup();
+    });
     $('#search').keyup(function () {
         var value = $(this).val().toLowerCase();
         $('#list tr').filter(function () {
@@ -38,7 +41,7 @@ function setPlanDate() {
             var planType = $('#planType').val();
             plans = _.filter(plans, {'planType': planType})
             var planDates = [];
-            var options = '';
+            var options = '<option selected>請選擇</option>';
             _.each(plans, function (plan) {
                 var planDate = plan.date;
                 var dayOfWeek = plan.dayOfWeek;
@@ -49,6 +52,27 @@ function setPlanDate() {
             });
             $('#planDate').empty();
             $('#planDate').append(options);
+            setPlanGroup();
+        })
+}
+function setPlanGroup() {
+    var params = {
+        "planType": $('#planType').val(),
+        "planDate": $('#planDate').val(),
+    }
+    var options = '<option selected>請選擇</option>';
+    getGroupInPlan(params)
+        .then(function (res) {
+            var groups = res.data;
+            _.each(groups, function(value, id) {
+                options += '<option value="'+ id+ '">' + value +'</option>';
+            })
+            $('#planGroup').empty();
+            $('#planGroup').append(options);
+        })
+        .catch(function () {
+            $('#planGroup').empty();
+            $('#planGroup').append(options);
         })
 }
 function getAvailablePlans() {
