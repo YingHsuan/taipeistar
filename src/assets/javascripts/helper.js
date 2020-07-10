@@ -62,6 +62,15 @@ function postOrder(payload) {
        console.log(error);
    });
 }
+function patchOrderById(id, payload) {
+    return axios.patch('/api/orders/' + id, payload,{
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
 function ValidateEmail(mail) {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
         return (true)

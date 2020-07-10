@@ -149,7 +149,7 @@ function getOrders(availablePlans) {
             })
             _.each(resultAvailablePlanGroups, function (t, index) {
                 var selected = index == order.groupName ? "selected" : "";
-                groupOptions += '<option ' + selected + ' value="' + t + '">' + index + '</option>';
+                groupOptions += '<option ' + selected + ' value="' + index + '">' + index + '</option>';
             })
             orderItem += '<tr><td>'+order.id +'</td>'+
                     '<td>'+
@@ -174,11 +174,11 @@ function getOrders(availablePlans) {
                         '</select>'+
                     '</td>'+
                     '<td><input id="getInfo_'+ order.id +'" type="button" value="查詢" data-order-id="' + order.id +'"></td>' +
-                    '<td><textarea>' + order.comment + '</textarea></td>' +
+                    '<td><textarea id="comment_'+ order.id+'">' + order.comment + '</textarea></td>' +
                     '<td>成功</td>'+
                     '<td>' + order.paymentMerchantTradeNo +'</td>'+
                     '<td>' + order.registrationDate +'</td>'+
-                    '<td><input type="button" value="儲存"></td></tr>'
+                    '<td><input id="saveInfo_'+order.id +'" type="button" value="儲存" data-order-id="'+ order.id +'"></td></tr>'
         })
         $('#list').empty();
         $('#list').append(orderItem);
@@ -224,6 +224,10 @@ function getOrders(availablePlans) {
         $("input[id^='getInfo_']").click(function (e) {
             var orderId = e.target.dataset.orderId;
             setInfo(orderId);
+        })
+        $("input[id^='saveInfo_']").click(function (e) {
+            var orderId = e.target.dataset.orderId;
+            saveInfo(orderId);
         })
     })
 }
@@ -334,5 +338,18 @@ function setInfo(orderId) {
                     person +
                 '</section>'
             $.fancybox.open(info);
+        })
+}
+
+function saveInfo(orderId) {
+    var payload = {
+        planType = $('#select_type_'+orderId).val(),
+        planDate = $('#select_date_'+orderId).val(),
+        groupId = $('#select_group_' + orderId).val(),
+        comment = $('#comment_'+orderId).val(),
+    }
+    patchOrderById(orderId, payload)
+        .then(function(res) {
+            console.log(res);
         })
 }
