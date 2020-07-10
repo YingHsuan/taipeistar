@@ -19,11 +19,14 @@ $(document).ready(function () {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
+    $('#search-button').click(function () {
+        getAvailablePlans();
+    })
     getAvailablePlans();
 });
 function setPlanType(plans) {
     var planTypes = [];
-    var options = '';
+    var options = '<option selected>請選擇</option>';
     _.each(plans, function(plan){
     var planType = plan.planType;
     if (!planTypes.includes(planType)) {
@@ -47,7 +50,7 @@ function setPlanDate() {
                 var dayOfWeek = plan.dayOfWeek;
                 if (!planDates.includes(planDate)) {
                     planDates.push(planDate);
-                    options += '<option>' + planDate + '('+dayOfWeek+')</option>';
+                    options += '<option value="' + planDate +'">' + planDate + '('+dayOfWeek+')</option>';
                 }
             });
             $('#planDate').empty();
@@ -81,6 +84,7 @@ function getAvailablePlans() {
         var availablePlans = res.data;
         // resultAvailablePlanType = _.map(_.uniqBy(availablePlans, 'planType'), 'planType');
         // resultAvailablePlanDate = _.map(_.uniqBy(availablePlans, 'date'), 'date');
+        
         _.each(availablePlans, function(plan) {
             var params = {
                 "planType": plan.planType,
@@ -99,6 +103,27 @@ function getOrders(availablePlans) {
     getOrder()
     .then( function(res) {
         orders = res.data;
+        var selectedPlanType = $('#planType').val();
+        var selectedPlanDate = $('#planDate').val();
+        var selectedPlanGroup = $('#planGroup option:selected').text(); //$('#planGroup').val();
+        if (selectedPlanType != '請選擇') {
+            console.log('filtering by type: ', selectedPlanType);
+            orders = _.filter(orders, {
+                'planType': selectedPlanType
+            });
+        };
+        if (selectedPlanDate != '請選擇') {
+            console.log('filtering by date: ', selectedPlanDate);
+            orders = _.filter(orders, {
+                'planDate': selectedPlanDate
+            });
+        };
+        if (selectedPlanGroup != '請選擇') {
+            console.log('filtering by group: ', selectedPlanGroup);
+            orders = _.filter(orders, {
+                'groupId': selectedPlanGroup
+            });
+        };
         var orderItem = '';
         resultAvailablePlanType = _.map(_.uniqBy(availablePlans, 'planType'), 'planType');
         _.each(orders, function(order) {
@@ -108,7 +133,6 @@ function getOrders(availablePlans) {
             var typeOptions, dateOptions, groupOptions = '';
             var resultAvailablePlanDate = _.map(_.uniqBy(_.filter(availablePlans, { 'planType': order.planType }), 'date'), 'date');
             var resultAvailablePlanGroups = _.filter(_.filter(availablePlans, { 'planType': order.planType }), {'date': order.planDate})[0].groups;
-            // console.log(resultAvailablePlanGroups);
             _.each(resultAvailablePlanType, function (t) {
                 var selected = t == order.planType ? "selected" : "";
                 typeOptions += '<option ' + selected + '>' + t + '</option>';
@@ -117,9 +141,9 @@ function getOrders(availablePlans) {
                 var selected = t == order.planDate ? "selected" : "";
                 dateOptions += '<option ' + selected + '>' + t + '</option>';
             })
-            _.each(resultAvailablePlanGroups, function (value, id) {
-                var selected = id == order.groupId ? "selected" : "";
-                groupOptions += '<option ' + selected + ' value="' + id + '">' + value + '</option>';
+            _.each(resultAvailablePlanGroups, function (t) {
+                var selected = t == order.groupId ? "selected" : "";
+                groupOptions += '<option ' + selected + ' value="' + t + '">' + order.groupName + '</option>';
             })
             orderItem += '<tr><td>'+order.id +'</td>'+
                     '<td>'+
