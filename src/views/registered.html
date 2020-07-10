@@ -8,34 +8,60 @@
         <div class="bg-center">
             <!-------------- table form -------------->
             <div class="text-box">
-                <div class="q-title"><strong>Q1.您想要報名的行程：</strong></div>
                 <div class="q-content">
-                    <input name="planType" type="radio" value="T1" checked>第一航廈團 (每日人數限額200人，50人即成團)<br>
-                    <input name="planType" type="radio" value="T2">第二航廈團 (每日人數限額200人，50人即成團)
+                    防疫調查事項<br>
+                    因配合政府防疫措施，請確認欲報名之活動日期當日起14天內(含)，確認均無出/入境紀錄者，方可進行後續報名程序(含報名者本人及其他攜伴全員)。
                 </div>
                 <img src="images/registered_content_line.png" class="q-line">
-                <div class="q-title"><strong>Q2.您想要報名的日期：</strong>
+                <div class="q-title"><strong>Q1.希望報名的行程：</strong></div>
+                <div class="q-content">免費梯次</div>
+                <div class="q-content clearfix">
+                    <input name="planType" type="radio" value="T1" checked>第一航廈團 (每日人數限額200人，40人即成團)<br>
+                    <input name="planType" type="radio" value="T2">第二航廈團 (每日人數限額200人，40人即成團)
+                </div><br>
+                <div class="q-content">平日梯次</div>
+                <div class="q-content clearfix"></div><br>
+                <div class="q-content">假日梯次</div>
+                <div class="q-content clearfix"></div><br>
+                <div class="q-content">
+                    ★平日即假日梯次每日限額200名，50人即成團。<br>
+                    ★若報名人數較少或不足，主辦單位將有權併團或取消成團(將以e-mail通知)，會盡量安排您所希望選擇的航廈別。
+                </div>
+                <img src="images/registered_content_line.png" class="q-line">
+                <!-- <div class="q-title"><strong>Q2.您想要報名的日期：</strong>
                     <font class="red">7/23首發團100名額由機場贊助</font>
                 </div>
                 <font class="error-planDate red error hide">請勾選報名日期</font>
-                <div id="available_date" class="q-content clearfix"></div>
-                <img src="images/registered_content_line.png" class="q-line">
-                <div class="q-title"><strong>Q3.住宿需求：</strong></div>
+                <div id="available_date" class="q-content clearfix"></div>-->
+                <div class="q-title"><strong>Q2.主要聯絡人：</strong></div>
                 <div class="q-content clearfix">
-                    <input name="accomodation" type="radio" value="true" checked>是 <input name="accomodation" type="radio" value="false">否<br>
-                    <font class="smaller">若勾選需要住宿，繳費後會給與一組早鳥訂房代碼，提供住宿優惠(<a href="./explanation"
-                            class="normal-color">詳情見活動辦法</a>)</font>
+                    <div class="q2-caption">姓名：</div>
+                    <div class="q2-column"><input type="text"></div>
+                    <div class="q2-caption">電話：</div>
+                    <div class="q2-column"><input type="tel" placeholder="限填手機"></div>
+                    <div class="q2-caption">Mail：</div>
+                    <div class="q2-column"><input type="email"><br>(本活動各項通知均以email聯繫，敬請留下有效的email信箱)</div>
                 </div>
                 <img src="images/registered_content_line.png" class="q-line">
-                <div class="q-title"><strong>Q4.參加人數：</strong>
-                    <font class="error-numberOfMember red error hide">請輸入參加人數</font>
+                <div class="q-title">
+                    <strong>Q3.預計攜伴人數(參與團員均需詳填個資)：</strong>
+                    <font class="error-numberOfMember red error hide">請勾選參加人數</font>
                 </div>
                 <div class="q-content clearfix">
-                    <div class="column2"><input id="feeByAdultCheck" type="checkbox">大人 <input id="numberOfAdults" type="text" class="num" required> 位</div>
-                    <div class="column2"><input id="feeByChildCheck" type="checkbox">小孩 <input id="numberOfChildren" type="text" class="num"> 位(6歲以上～12歲以下)</div>
-                    <div class="column3">
-                        <font class="red"><strong>總計費用：&nbsp;&nbsp;<span id="feeByMember"></span>&nbsp;&nbsp;NT</strong></font>
-                    </div>
+                    國民價 N.T. 1,000元/位<br>
+                    全國民眾~12歲以上(即民國97年9月1日(含)前出生者)<br>
+                    <input type="checkbox">1位&nbsp;&nbsp;
+                    <input type="checkbox">2位&nbsp;&nbsp;
+                    <input type="checkbox">3位&nbsp;&nbsp;
+                    <input type="checkbox">4位&nbsp;&nbsp;
+                    <input type="checkbox">5位<br><br>
+                    國小優惠價 N.T. 800元/位<br>
+                    12歲以下(即民國97年9月2日(含)後出生者)~7歲以上(含109學年度小一新生，即民國103年9月1日(含)前出生者)<br>
+                    <input type="checkbox">1位&nbsp;&nbsp;
+                    <input type="checkbox">2位&nbsp;&nbsp;
+                    <input type="checkbox">3位&nbsp;&nbsp;
+                    <input type="checkbox">4位&nbsp;&nbsp;
+                    <input type="checkbox">5位
                 </div>
                 <img src="images/registered_content_line.png" class="q-line">
                 <div class="q-title"><strong>參與團員請詳填個資</strong></div>
@@ -44,14 +70,29 @@
                 <div class="table-note">
                     若欄位不夠使用，請點選+號&nbsp;<a><img id="appendForm" src="images/icon_plus_orange.png"></a>
                 </div>
+                <div class="q-title"><strong>Q4.住宿需求：</strong></div>
+                <div class="q-content">
+                    <input name="accomodation" type="radio" value="true" checked>是 <input name="accomodation" type="radio" value="false">否<br>
+                </div>
                 <img src="images/registered_content_line.png" class="q-line">
-                <div class="q-title"><strong>Q5.是否同意個資條款：</strong></div>
+                <div class="q-title">
+                    <strong>Q5.是否同意個資法及桃機相關法令規定條款：</strong>
+                    <input name="agree" type="radio" value="true">是 <input name="agree" type="radio" value="false" checked>否<br>
+                </div>
                 <div class="q-content clearfix">
-                    <input name="agree" type="radio" value="true">同意 <input name="agree" type="radio" value="false" checked>不同意<br>
                     <a class="read-terms">閱讀個資條款</a>
                     <div class="privacy-content">
-                        個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容<br>
-                        個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容個資條款內容
+                        <ul class="num">
+                            <li>送出報名資料前，請再次檢查各項個資資料是否均正確無誤，因需提前申請辦理機場參觀證，報名後資料及名單將無法修改，報名資格與梯次亦不得更換或轉讓，敬請協助配合。</li>
+                            <li>因導覽行程會進入機場管制區內，報名時請協助提供特定個資資料，以供查核驗證或聯絡之用，含：姓名、性別、身份證字號、出生年月日、電話、e-mail及住址等(報名資料將受個人資料保護法規定保護，僅限於本次申請參觀桃園國際機場使用)
+                                。當天各團的導覽動線與內容，將視現場實際狀況進行調整。</li>
+                            <li>活動當天請務必攜帶「身分證正本」(外國籍請攜帶護照正本或在台居留證正本、若無身分證之兒童請帶「健保卡正本」、)
+                                以供安全查驗、申借機場參觀證之用，未攜帶者將無法進入機場管制區，且恕不予以保留名額及退費。並於當日參觀完畢後，回收機場參觀證。</li>
+                            <li>活動全程須遵守「民用航空法」、「民航機場管制區進出管制作業規定」、「桃園國際機場保安計畫」等相關法令規定辦理。請勿攜帶寵物、違禁品或其他危安物ˋ品進入，並不得任意攜走或破壞本機場公物；勿攜帶大型背包並減少隨身物品，並配合航警人員之檢查。如有違反其他法令情事者，將依法辦理。
+                            </li>
+                            <li>若本活動因不可抗力之特殊原因無法執行時(含颱風、地震等不可抗力之因素)，主辦單位有權取消、終止、修改或暫停本活動內容，其他未盡事宜，主辦單位保有最終解釋權利。</li>
+                            <li>完成報名此活動，則表示同意且願意遵守本活動辦法內容及上列相關注意事項。</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -60,18 +101,6 @@
             <img src="images/registered_text_illu.png" class="regi-illu">
         </div>
         <div class="bg-down"><img src="images/text_content_down_bg.png" class="text-content-bottom"></div>
-    </div>
-    <div class="registered-remind-box">
-        <div class="remind-top-title"><img src="images/remind_top_title.jpg"></div>
-        <div class="remind-content">
-            <ul class="num">
-                <li>報名前請再次檢查各項個資資料是否均無誤，報名後即不可修改，報名資格不得轉讓。</li>
-                <li>若本活動因不可抗力之特殊原因無法執行時，本公司有權取消、終止、修改或暫停本活動內容，其他未盡事宜，本公司保有最終解釋權利。</li>
-                <li>參加此活動則表示同意且願意遵守以上注意事項。</li>
-            </ul>
-        </div>
-        <div class="remind-bottom"><img src="images/remind_down.jpg"></div>
-        <img src="images/registered_confirm_illu.png" class="remind-illu">
     </div>
 </section>
 <script src="js/tw-city-selector.js"></script>
