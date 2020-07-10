@@ -71,6 +71,15 @@ function patchOrderById(id, payload) {
         console.log(error);
     });
 }
+function postGroupMailNotification(payload) {
+    return axios.post('/api/group-mail-notification', payload, {
+       headers: {
+            'Content-Type': 'application/json',
+       },
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
 function ValidateEmail(mail) {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
         return (true)

@@ -3,6 +3,7 @@ var resultAvailablePlanDate = [];
 var feeForAdult = 1000;
 var feeForChild = 800;
 $(document).ready(function () {
+    $('#send-mail').prop('disabled', true);
     getPlan()
     .then( function(res){
         plans = res.data;
@@ -11,10 +12,15 @@ $(document).ready(function () {
     });
     $('#planType').change(function () {
         setPlanDate();
+        checkEnableSendMail();
     });
     $('#planDate').change(function () {
         setPlanGroup();
+        checkEnableSendMail();
     });
+    $('#planGroup').change(function() {
+        checkEnableSendMail();
+    })
     $('#search').keyup(function () {
         var value = $(this).val().toLowerCase();
         $('#list tr').filter(function () {
@@ -24,9 +30,22 @@ $(document).ready(function () {
     $('#search-button').click(function () {
         getAvailablePlans();
     })
+    $('#send-mail').click(function() {
+        sendMail();
+    })
     getAvailablePlans();
     // $.fancybox.open('<div class="message"><h2>Hello!</h2><p>You are awesome!</p></div>');
 });
+function checkEnableSendMail() {
+    var type = $('#planType').val();
+    var date = $('#planDate').val();
+    var group = $('#planGroup').val();
+    if (type == '不限' || date == '不限' || group == '不限') {
+        $('#send-mail').prop('disabled', true);
+    } else {
+        $('#send-mail').prop('disabled', false);
+    }
+}
 function setPlanType(plans) {
     var planTypes = [];
     var options = '<option selected>不限</option>';
@@ -349,6 +368,20 @@ function saveInfo(orderId) {
         comment = $('#comment_'+orderId).val(),
     }
     patchOrderById(orderId, payload)
+        .then(function(res) {
+            console.log(res);
+        })
+}
+function sendMail() {
+    var type = $('#planType').val();
+    var date = $('#planDate').val();
+    var group = $('#planGroup').val();
+    var payload = {
+        "planType": type,
+        "planDate": date,
+        "groupId": group,
+    }
+    postGroupMailNotification(payload)
         .then(function(res) {
             console.log(res);
         })
