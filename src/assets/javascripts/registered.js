@@ -76,9 +76,7 @@ function appendPeopleForm() {
                 '<div class="column"><input name="gender-' + numOfPeople + '" type="radio" value="男" checked>男&nbsp;&nbsp;<input name="gender-' + numOfPeople + '" type="radio" value="女">女</div>' +
                 '<div class="caption">出生年月日：</div>' +
                 '<div class="column">'+
-                    '<input id="dateOfBirthYear-' + numOfPeople + '" type="text" class="ymd"> 年&nbsp;&nbsp;&nbsp;' +
-                    '<input id="dateOfBirthMonth-' + numOfPeople + '"type="text" class="ymd"> 月&nbsp;&nbsp;&nbsp;' +
-                    '<input id="dateOfBirthDay-' + numOfPeople + '"type="text" class="ymd"> 日' +
+                    '<input id="dateOfBirth-' + numOfPeople + '"type="date" class="ymd" value="2000-01-01">' +
                     '<font id="error-dateOfBirth-' + numOfPeople + '" class="red error hide">請填寫</font>'+
                 '</div>'+
                 '<div class="caption">身分證：<br></div>' +
@@ -137,7 +135,7 @@ function checkFormValid() {
     var numOfPeople = $('.person-table-box').length;
     for (p = 0; p < numOfPeople; p++) {
         var name = $('#name-' + p).val();
-        var dateOfBirth = $('#dateOfBirthYear-' + p).val() + '-' + $('#dateOfBirthMonth-' + p).val() + '-' +$('#dateOfBirthDay-' + p).val();
+        var dateOfBirth = $('#dateOfBirth-'+p).val();
         var numberOfIdCard = $('#numberOfIdCard-'+p).val();
         var city_country = $('#city-'+p+ ' .county').val();
         var city_district = $('#city-' + p + ' .district').val();
@@ -202,7 +200,7 @@ $('#postOrder').click(function() {
             for (p = 0; p < numOfPeople; p++) {
                 var name = $('#name-' + p).val();
                 var gender = $('input[name="gender-' + p + '"]:checked').val();
-                var dateOfBirth = $('#dateOfBirthYear-' + p).val() + '-' + $('#dateOfBirthMonth-' + p).val() + '-' + $('#dateOfBirthDay-' + p).val();
+                var dateOfBirth = $('#dateOfBirth-'+p).val();
                 var numberOfIdCard = $('#numberOfIdCard-'+p).val();
                 var city_country = $('#city-' + p + ' .county').val();
                 var city_district = $('#city-' + p + ' .district').val();

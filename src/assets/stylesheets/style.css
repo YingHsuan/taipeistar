@@ -968,7 +968,8 @@ ul.num-ch li .column {
 
     section#page-registered input[type=text],
     .q-content input[type=tel],
-    .q-content input[type=email] {
+    .q-content input[type=email],
+    input[type=date] {
         width: 300px;
         padding: 5px;
         color: #414141;
