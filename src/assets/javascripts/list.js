@@ -68,7 +68,7 @@ function setPlanGroup() {
         .then(function (res) {
             var groups = res.data;
             _.each(groups, function(value, id) {
-                options += '<option value="'+ id+ '">' + value +'</option>';
+                options += '<option value="'+ id+ '">' + id+'('+value+'人)' +'</option>';
             })
             $('#planGroup').empty();
             $('#planGroup').append(options);
@@ -105,23 +105,20 @@ function getOrders(availablePlans) {
         orders = res.data;
         var selectedPlanType = $('#planType').val();
         var selectedPlanDate = $('#planDate').val();
-        var selectedPlanGroup = $('#planGroup option:selected').text(); //$('#planGroup').val();
+        var selectedPlanGroup = $('#planGroup').val();
         if (selectedPlanType != '請選擇') {
-            console.log('filtering by type: ', selectedPlanType);
             orders = _.filter(orders, {
                 'planType': selectedPlanType
             });
         };
         if (selectedPlanDate != '請選擇') {
-            console.log('filtering by date: ', selectedPlanDate);
             orders = _.filter(orders, {
                 'planDate': selectedPlanDate
             });
         };
         if (selectedPlanGroup != '請選擇') {
-            console.log('filtering by group: ', selectedPlanGroup);
             orders = _.filter(orders, {
-                'groupId': selectedPlanGroup
+                'groupName': selectedPlanGroup
             });
         };
         var orderItem = '';
@@ -141,9 +138,9 @@ function getOrders(availablePlans) {
                 var selected = t == order.planDate ? "selected" : "";
                 dateOptions += '<option ' + selected + '>' + t + '</option>';
             })
-            _.each(resultAvailablePlanGroups, function (t) {
-                var selected = t == order.groupId ? "selected" : "";
-                groupOptions += '<option ' + selected + ' value="' + t + '">' + order.groupName + '</option>';
+            _.each(resultAvailablePlanGroups, function (t, index) {
+                var selected = index == order.groupName ? "selected" : "";
+                groupOptions += '<option ' + selected + ' value="' + t + '">' + index + '</option>';
             })
             orderItem += '<tr><td>'+order.id +'</td>'+
                     '<td>'+
