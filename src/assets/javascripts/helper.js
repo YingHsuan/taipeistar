@@ -7,6 +7,34 @@ function getPlan() {
         console.log(error);
     });
 }
+function getAvailablePlan() {
+    return axios.get('/api/available-plans', {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+function getGroupInPlanById(id) {
+    return axios.get('/api/groups-in-plan/'+id, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
+function getGroupInPlan(params) {
+    return axios.get('/api/groups-in-plan', {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        params: params,
+    }).catch(function (error) {
+        console.log(error);
+    });
+}
 function getOrder() {
     return axios.get('/api/orders', {
         headers: {
