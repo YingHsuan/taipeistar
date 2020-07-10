@@ -38,12 +38,13 @@ $('#numberOfAdults, #numberOfChildren').keyup(function (e) {
 })
 function appendAvailableDate(dates) {
     var item = ''
-    _.each(dates, function(v) {
+    _.each(dates, function(v, i) {
         var date = v.date;
         var remainingQuota = v.remainingQuota;
         var day = v.dayOfWeek;
         var id = v.id;
-        item += '<div class="column-x2"><input name="planDate" id="' + id + '" type="radio" value="'+date+'">' + date + '(' + day + ')<font class="red">(剩餘：' + remainingQuota + '人)</font></div>'
+        var checked = (i==0)?'checked':'';
+        item += '<div class="column-x2"><input name="planDate" id="' + id + '" type="radio" value="' + date + '" ' + checked + '>' + date + '(' + day + ')<font class="red">(剩餘：' + remainingQuota + '人)</font></div>'
     })
     $('#available_date').empty();
     $('#available_date').append(item);
