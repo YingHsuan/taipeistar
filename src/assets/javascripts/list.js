@@ -364,7 +364,7 @@ function saveInfo(orderId) {
     var payload = {
         planType = $('#select_type_'+orderId).val(),
         planDate = $('#select_date_'+orderId).val(),
-        groupId = $('#select_group_' + orderId).val(),
+        groupName = $('#select_group_' + orderId).val(),
         comment = $('#comment_'+orderId).val(),
     }
     patchOrderById(orderId, payload)
@@ -379,7 +379,7 @@ function sendMail() {
     var payload = {
         "planType": type,
         "planDate": date,
-        "groupId": group,
+        "groupName": group,
     }
     postGroupMailNotification(payload)
         .then(function(res) {
