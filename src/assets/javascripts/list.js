@@ -212,11 +212,11 @@ function getOrders(availablePlans) {
             getAvailablePlan()
                 .then(function (res) {
                     var availablePlans = _.filter(res.data, { 'planType': selectedValue });
-                    var dates = _.map(_.uniqBy(availablePlans, 'date'), 'date');
+                    // var dates = _.map(_.uniqBy(availablePlans, 'date'), 'date');
                     var newDateOptions = '<option selected>請選擇</option>';
                     var newGroupOptions = '<option selected>請選擇</option>';
-                    _.each(dates, function (date) {
-                        newDateOptions += '<option>' + date + '</option>'
+                    _.each(availablePlans, function (plan) {
+                        newDateOptions += '<option value="'+plan.date+'">' + plan.date+' ('+plan.dayOfWeek+')' + '</option>'
                     })
                     $('#select_date_' + orderId).empty();
                     $('#select_date_' + orderId).append(newDateOptions);
