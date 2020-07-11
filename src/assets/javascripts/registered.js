@@ -38,12 +38,20 @@ $('#numberOfAdults, #numberOfChildren').keyup(function (e) {
 })
 function appendAvailableDate(dates) {
     var item = ''
-    _.each(dates, function(v) {
+    var foundDefault = false;
+    _.each(dates, function(v, i) {
         var date = v.date;
         var remainingQuota = v.remainingQuota;
         var day = v.dayOfWeek;
         var id = v.id;
-        item += '<div class="column-x2"><input name="planDate" id="' + id + '" type="radio" value="'+date+'">' + date + '(' + day + ')<font class="red">(剩餘：' + remainingQuota + '人)</font></div>'
+        var checked = '';
+        // var checked = (i==0)?'checked':'';
+        var disabled = (remainingQuota==0)?'disabled':'';
+        if (!foundDefault && remainingQuota != 0) {
+            checked = 'checked';
+            foundDefault = true;
+        }
+        item += '<div class="column-x2"><input name="planDate" id="' + id + '" type="radio" value="' + date + '" ' + checked + ' '+ disabled+'>' + date + '(' + day + ')<font class="red">(剩餘：' + remainingQuota + '人)</font></div>'
     })
     $('#available_date').empty();
     $('#available_date').append(item);
@@ -76,14 +84,14 @@ function appendPeopleForm() {
                 '<div class="column"><input name="gender-' + numOfPeople + '" type="radio" value="男" checked>男&nbsp;&nbsp;<input name="gender-' + numOfPeople + '" type="radio" value="女">女</div>' +
                 '<div class="caption">出生年月日：</div>' +
                 '<div class="column">'+
-                    '<input id="dateOfBirthYear-' + numOfPeople + '" type="text" class="ymd"> 年&nbsp;&nbsp;&nbsp;' +
-                    '<input id="dateOfBirthMonth-' + numOfPeople + '"type="text" class="ymd"> 月&nbsp;&nbsp;&nbsp;' +
-                    '<input id="dateOfBirthDay-' + numOfPeople + '"type="text" class="ymd"> 日' +
+                    '<input id="dateOfBirth-' + numOfPeople + '"type="date" class="ymd" value="2000-01-01">' +
                     '<font id="error-dateOfBirth-' + numOfPeople + '" class="red error hide">請填寫</font>'+
                 '</div>'+
+                '<div class="caption">國籍：</div>'+
+                '<div class="column"><input name="country-' + numOfPeople + '" type="radio" value="本國籍" checked>本國籍&nbsp;&nbsp;<input name="country-' + numOfPeople + '" type="radio" value="非本國籍">非本國籍</div>' +
                 '<div class="caption">身分證：<br></div>' +
                 '<div class="column">'+
-                    '<input id="numberOfIdCard-' + numOfPeople + '" type="text"><font id="error-numberOfIdCard-' + numOfPeople + '" class="red error hide">請填寫</font><br>' +
+                    '<input id="numberOfIdCard-' + numOfPeople + '" type="text"><font id="error-numberOfIdCard-' + numOfPeople + '" class="red error hide">請正確填寫</font><br>' +
                     '<font class="ssmall">(非本國籍請填寫護照號碼)</font>'+
                 '</div>'+
                 '<div class="caption">地址：</div>' +
@@ -137,8 +145,9 @@ function checkFormValid() {
     var numOfPeople = $('.person-table-box').length;
     for (p = 0; p < numOfPeople; p++) {
         var name = $('#name-' + p).val();
-        var dateOfBirth = $('#dateOfBirthYear-' + p).val() + '-' + $('#dateOfBirthMonth-' + p).val() + '-' +$('#dateOfBirthDay-' + p).val();
-        var numberOfIdCard = $('#numberOfIdCard-'+p).val();
+        var dateOfBirth = $('#dateOfBirth-'+p).val();
+        var country = $('input[name="country-' + p + '"]:checked').val();
+        var numberOfIdCard = $('#numberOfIdCard-' + p).val();
         var city_country = $('#city-'+p+ ' .county').val();
         var city_district = $('#city-' + p + ' .district').val();
         var address = $('#address-'+p).val();
@@ -156,12 +165,23 @@ function checkFormValid() {
         } else {
             $('#error-dateOfBirth-' + p).addClass('hide');
         }
-        if (numberOfIdCard == '') {
-           $('#error-numberOfIdCard-' + p).removeClass('hide');
-           isError = true;
+        if (country == '本國籍') {
+            var isID = validateID(numberOfIdCard)
+            if (!isID) {
+                $('#error-numberOfIdCard-' + p).removeClass('hide');
+                isError = true;
+            } else {
+                $('#error-numberOfIdCard-' + p).addClass('hide');
+            }
         } else {
-           $('#error-numberOfIdCard-' + p).addClass('hide');
+            if (numberOfIdCard == '') {
+                $('#error-numberOfIdCard-' + p).removeClass('hide');
+                isError = true;
+            } else {
+                $('#error-numberOfIdCard-' + p).addClass('hide');
+            }
         }
+        
         if (city_country == '' || city_district == '' || address == '') {
            $('#error-address-' + p).removeClass('hide');
            isError = true;
@@ -202,7 +222,7 @@ $('#postOrder').click(function() {
             for (p = 0; p < numOfPeople; p++) {
                 var name = $('#name-' + p).val();
                 var gender = $('input[name="gender-' + p + '"]:checked').val();
-                var dateOfBirth = $('#dateOfBirthYear-' + p).val() + '-' + $('#dateOfBirthMonth-' + p).val() + '-' + $('#dateOfBirthDay-' + p).val();
+                var dateOfBirth = $('#dateOfBirth-'+p).val();
                 var numberOfIdCard = $('#numberOfIdCard-'+p).val();
                 var city_country = $('#city-' + p + ' .county').val();
                 var city_district = $('#city-' + p + ' .district').val();
@@ -235,14 +255,22 @@ $('#postOrder').click(function() {
             };
             setLoading(true);
             postOrder(payload)
-                .then(function (res) {
-                    console.log(res);
-                    setLoading(false);
+                .done(function (res) {
                     data = res.data;
                     if (data.message == 'goToPay') {
                         var formObject = data.paymentHtml;
                         goToPay(formObject);
+                    } else if (data.message == 'success') {
+                        alert('報名成功');
+                        window.location.href = '/notice';
+                    } else {
+                        alert('報名失敗');
+                        window.location.href = '/registered';
                     }
+                }).fail(function(error) {
+                   alert('Oops! Something wrong!');
+                }).always(function() {
+                   setLoading(false);
                 })
         } else {
             alert('請勾選同意');

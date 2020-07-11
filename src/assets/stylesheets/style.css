@@ -170,7 +170,7 @@ section#backend-page table tr:nth-child(even) {
     background-color: #fff;
 }
 
-section#backend-page table tr:first-child {
+section#backend-page table thead tr:first-child {
     color: #fff;
     font-weight: 500;
     background-color: #999;
@@ -474,7 +474,7 @@ ul.num-ch li .column {
     nav.hp {
         clear: both;
         width: 100%;
-        margin: -21vw 0 0 0;
+        margin: -16vw 0 0 0;
         position: relative;
         z-index: 11;
     }
@@ -905,7 +905,7 @@ ul.num-ch li .column {
 
     section#page-registered .text-content .bg-center .text-box {
         width: 100%;
-        padding: 0 100px 100px 200px;
+        padding: 0 100px 60px 200px;
         font-size: 1.1em;
         line-height: 1.8em;
         box-sizing: border-box;
@@ -968,7 +968,8 @@ ul.num-ch li .column {
 
     section#page-registered input[type=text],
     .q-content input[type=tel],
-    .q-content input[type=email] {
+    .q-content input[type=email],
+    input[type=date] {
         width: 300px;
         padding: 5px;
         color: #414141;
@@ -1118,11 +1119,11 @@ ul.num-ch li .column {
     }
 
     section#page-registered .text-content img.regi-submit-bt {
-        width: 600px;
+        width: 500px;
         height: auto;
         position: absolute;
         bottom: -80px;
-        left: calc(50% - 300px);
+        left: calc(50% - 250px);
     }
 
     section#page-registered .text-content img.regi-illu {
@@ -1549,7 +1550,7 @@ ul.num-ch li .column {
     nav.hp {
         clear: both;
         width: 100%;
-        margin: -21vw 0 0 0;
+        margin: -16vw 0 0 0;
         position: relative;
         z-index: 11;
     }
@@ -2210,11 +2211,11 @@ ul.num-ch li .column {
     }
 
     section#page-registered .text-content img.regi-submit-bt {
-        width: 550px;
+        width: 500px;
         height: auto;
         position: absolute;
         bottom: -80px;
-        left: calc(50% - 275px);
+        left: calc(50% - 250px);
     }
 
     section#page-registered .text-content img.regi-illu {
@@ -2681,7 +2682,7 @@ ul.num-ch li .column {
     nav.hp {
         clear: both;
         width: 100%;
-        margin: -21vw 0 5vw 0;
+        margin: -15vw 0 5vw 0;
         position: relative;
         z-index: 11;
     }
@@ -3112,7 +3113,7 @@ ul.num-ch li .column {
 
     section#page-registered .text-content .bg-center .text-box {
         width: 100%;
-        padding: 0 2vw 12vw 10vw;
+        padding: 0 2vw 6vw 10vw;
         font-size: 1.1em;
         line-height: 1.8em;
         box-sizing: border-box;
@@ -3336,11 +3337,11 @@ ul.num-ch li .column {
     }
 
     section#page-registered .text-content img.regi-submit-bt {
-        width: 50vw;
+        width: 36vw;
         height: auto;
         position: absolute;
         bottom: -5vw;
-        left: calc(50% - 25vw);
+        left: calc(50% - 18vw);
     }
 
     section#page-registered .text-content img.regi-illu {
