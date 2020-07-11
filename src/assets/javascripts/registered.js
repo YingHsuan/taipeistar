@@ -80,9 +80,11 @@ function appendPeopleForm() {
                     '<input id="dateOfBirth-' + numOfPeople + '"type="date" class="ymd" value="2000-01-01">' +
                     '<font id="error-dateOfBirth-' + numOfPeople + '" class="red error hide">請填寫</font>'+
                 '</div>'+
+                '<div class="caption">國籍：</div>'+
+                '<div class="column"><input name="country-' + numOfPeople + '" type="radio" value="本國籍" checked>本國籍&nbsp;&nbsp;<input name="country-' + numOfPeople + '" type="radio" value="非本國籍">非本國籍</div>' +
                 '<div class="caption">身分證：<br></div>' +
                 '<div class="column">'+
-                    '<input id="numberOfIdCard-' + numOfPeople + '" type="text"><font id="error-numberOfIdCard-' + numOfPeople + '" class="red error hide">請填寫</font><br>' +
+                    '<input id="numberOfIdCard-' + numOfPeople + '" type="text"><font id="error-numberOfIdCard-' + numOfPeople + '" class="red error hide">請正確填寫</font><br>' +
                     '<font class="ssmall">(非本國籍請填寫護照號碼)</font>'+
                 '</div>'+
                 '<div class="caption">地址：</div>' +
@@ -137,7 +139,8 @@ function checkFormValid() {
     for (p = 0; p < numOfPeople; p++) {
         var name = $('#name-' + p).val();
         var dateOfBirth = $('#dateOfBirth-'+p).val();
-        var numberOfIdCard = $('#numberOfIdCard-'+p).val();
+        var country = $('input[name="country-' + p + '"]:checked').val();
+        var numberOfIdCard = $('#numberOfIdCard-' + p).val();
         var city_country = $('#city-'+p+ ' .county').val();
         var city_district = $('#city-' + p + ' .district').val();
         var address = $('#address-'+p).val();
@@ -155,12 +158,23 @@ function checkFormValid() {
         } else {
             $('#error-dateOfBirth-' + p).addClass('hide');
         }
-        if (numberOfIdCard == '') {
-           $('#error-numberOfIdCard-' + p).removeClass('hide');
-           isError = true;
+        if (country == '本國籍') {
+            var isID = validateID(numberOfIdCard)
+            if (!isID) {
+                $('#error-numberOfIdCard-' + p).removeClass('hide');
+                isError = true;
+            } else {
+                $('#error-numberOfIdCard-' + p).addClass('hide');
+            }
         } else {
-           $('#error-numberOfIdCard-' + p).addClass('hide');
+            if (numberOfIdCard == '') {
+                $('#error-numberOfIdCard-' + p).removeClass('hide');
+                isError = true;
+            } else {
+                $('#error-numberOfIdCard-' + p).addClass('hide');
+            }
         }
+        
         if (city_country == '' || city_district == '' || address == '') {
            $('#error-address-' + p).removeClass('hide');
            isError = true;
