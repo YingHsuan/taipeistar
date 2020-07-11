@@ -33,6 +33,9 @@ $(document).ready(function () {
     $('#send-mail').click(function() {
         sendMail();
     })
+    $('#export-orders').click(function() {
+        exportOrders();
+    })
     getAvailablePlans();
     // $.fancybox.open('<div class="message"><h2>Hello!</h2><p>You are awesome!</p></div>');
 });
@@ -406,5 +409,13 @@ function sendMail() {
         .then(function(res) {
             console.log(res);
             alert('發送成功');
+        })
+}
+function exportOrders() {
+    getExportOrders()
+        .done(function(res){
+            console.log(res);
+        }).fail(function(err) {
+            console.log(err)
         })
 }

@@ -53,6 +53,19 @@ function getOrderById(id) {
         console.log(error);
     });
 }
+function getExportOrders(){
+    var defer = $.Deferred();
+    axios.get('/api/export/orders', {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then(function (res) {
+        defer.resolve(res);
+    }).catch(function (error) {
+        defer.reject(error);
+    });
+    return defer;
+}
 function postOrder(payload) {
     var defer = $.Deferred();
     axios.post('/api/orders', payload, {
