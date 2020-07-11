@@ -164,7 +164,7 @@ function getOrders(availablePlans) {
             })
             _.each(resultAvailablePlanDate, function (t) {
                 var selected = t == order.planDate ? "selected" : "";
-                dateOptions += '<option ' + selected + '>' + t + ' (' + order.planDayOfWeek +')</option>';
+                dateOptions += '<option ' + selected + ' value="'+t+'">' + t + ' (' + order.planDayOfWeek +')</option>';
             })
             if (resultAvailablePlanGroups.length > 0) {
                 var groupsFromAvailablePlan = resultAvailablePlanGroups[0].groups
