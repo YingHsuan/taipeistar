@@ -235,12 +235,17 @@ $('#postOrder').click(function() {
             setLoading(true);
             postOrder(payload)
                 .then(function (res) {
-                    console.log(res);
                     setLoading(false);
                     data = res.data;
                     if (data.message == 'goToPay') {
                         var formObject = data.paymentHtml;
                         goToPay(formObject);
+                    } else if (data.message == 'success') {
+                        alert('報名成功');
+                        window.location.href = '/notice';
+                    } else {
+                        alert('報名失敗');
+                        window.location.href = '/registered';
                     }
                 })
         } else {
