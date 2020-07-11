@@ -156,8 +156,8 @@ function getOrders(availablePlans) {
             var numOfAdult = order.numberOfAdults;
             var numOfChild = order.numberOfChildren;
             var typeOptions, dateOptions, groupOptions = '';
-            var resultAvailablePlanDate = _.map(_.uniqBy(_.filter(availablePlans, { 'planType': order.planType }), 'date'), 'date');
-            var resultAvailablePlanGroups = _.filter(_.filter(availablePlans, { 'planType': order.planType }), {'date': order.planDate})[0].groups;
+            var resultAvailablePlanDate = _.map(_.filter(availablePlans, { 'planType': order.planType }), 'date');
+            var resultAvailablePlanGroups = _.filter(_.filter(availablePlans, { 'planType': order.planType }), {'date': order.planDate});
             _.each(resultAvailablePlanType, function (t) {
                 var selected = t == order.planType ? "selected" : "";
                 typeOptions += '<option ' + selected + '>' + t + '</option>';
@@ -166,10 +166,15 @@ function getOrders(availablePlans) {
                 var selected = t == order.planDate ? "selected" : "";
                 dateOptions += '<option ' + selected + '>' + t + ' (' + order.planDayOfWeek +')</option>';
             })
-            _.each(resultAvailablePlanGroups, function (t, index) {
-                var selected = index == order.groupName ? "selected" : "";
-                groupOptions += '<option ' + selected + ' value="' + index + '">' + index + '</option>';
-            })
+            if (resultAvailablePlanGroups.length > 0) {
+                var groupsFromAvailablePlan = resultAvailablePlanGroups[0].groups
+                _.each(groupsFromAvailablePlan, function (t, index) {
+                    var selected = index == order.groupName ? "selected" : "";
+                    groupOptions += '<option ' + selected + ' value="' + index + '">' + index + '</option>';
+                })
+            } else {
+                groupOptions += '<option selected value="' + order.groupName + '">' + order.groupName + '</option>';
+            }
             orderItem += '<tr><td>'+order.id +'</td>'+
                     '<td>'+
                         '<select id="select_type_' + order.id +'" data-order-id="'+ order.id +'">'+
