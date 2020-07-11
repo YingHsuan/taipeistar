@@ -234,8 +234,8 @@ function getOrders(availablePlans) {
             getGroupInPlan(params)
                 .then(function (res) {
                     var groups = res.data;
-                    _.each(groups, function (date) {
-                        newGroupOptions += '<option>' + date + '</option>'
+                    _.each(groups, function (value, index) {
+                        newGroupOptions += '<option value="'+index+'">' + index + '</option>'
                     })
                     $('#select_group_' + orderId).empty();
                     $('#select_group_' + orderId).append(newGroupOptions);
