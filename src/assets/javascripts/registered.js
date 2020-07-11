@@ -148,9 +148,19 @@ function checkFormValid() {
     }
     // people
     var numOfPeople = $('.person-table-box').length;
+    var numberOfAdults = parseInt($('input[name="numberOfAdults"]:checked').val());
+    var numberOfChildren = parseInt($('input[name="numberOfChildren"]:checked').val());
     for (p = 0; p < numOfPeople; p++) {
         var name = $('#name-' + p).val();
         var dateOfBirth = $('#dateOfBirth-'+p).val();
+        var age = calculate_age(dateOfBirth);
+        var personAgeBet6And12 = 0;
+        var personAgeUpon12 = 0;
+        if (age >= 6 && age < 12) {
+            personAgeBet6And12 += 1;
+        } else if (age >= 12) {
+            personAgeUpon12 += 1;
+        }
         var country = $('input[name="country-' + p + '"]:checked').val();
         var numberOfIdCard = $('#numberOfIdCard-' + p).val();
         var city_country = $('#city-'+p+ ' .county').val();
@@ -209,6 +219,12 @@ function checkFormValid() {
             $('#error-email-' + p).addClass('hide');
         }
         
+    }
+    if (personAgeUpon12 != numberOfAdults || personAgeBet6And12 != numberOfChildren) {
+        $('#error-numberOfMember').removeClass('hide');
+        isError = true;
+    } else {
+       $('#error-numberOfMember').addClass('hide');
     }
     return !isError;
 }

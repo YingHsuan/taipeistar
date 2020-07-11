@@ -122,6 +122,13 @@ function validateID(id) {
     if (sum % 10 != 0) return false;
     return true;
 }
+function calculate_age(dob) {
+    dob = new Date(dob);
+    var today = new Date();
+    var age = Math.floor((today - dob) / (365.25 * 24 * 60 * 60 * 1000));
+
+    return age;
+}
 function goToPay(paymentForm) {
     var s = paymentForm.replace(/\\/g, '');
     var formObject = $(s);
