@@ -38,13 +38,20 @@ $('#numberOfAdults, #numberOfChildren').keyup(function (e) {
 })
 function appendAvailableDate(dates) {
     var item = ''
+    var foundDefault = false;
     _.each(dates, function(v, i) {
         var date = v.date;
         var remainingQuota = v.remainingQuota;
         var day = v.dayOfWeek;
         var id = v.id;
-        var checked = (i==0)?'checked':'';
-        item += '<div class="column-x2"><input name="planDate" id="' + id + '" type="radio" value="' + date + '" ' + checked + '>' + date + '(' + day + ')<font class="red">(剩餘：' + remainingQuota + '人)</font></div>'
+        var checked = '';
+        // var checked = (i==0)?'checked':'';
+        var disabled = (remainingQuota==0)?'disabled':'';
+        if (!foundDefault && remainingQuota != 0) {
+            checked = 'checked';
+            foundDefault = true;
+        }
+        item += '<div class="column-x2"><input name="planDate" id="' + id + '" type="radio" value="' + date + '" ' + checked + ' '+ disabled+'>' + date + '(' + day + ')<font class="red">(剩餘：' + remainingQuota + '人)</font></div>'
     })
     $('#available_date').empty();
     $('#available_date').append(item);
