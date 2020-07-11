@@ -150,12 +150,12 @@ function checkFormValid() {
     var numOfPeople = $('.person-table-box').length;
     var numberOfAdults = parseInt($('input[name="numberOfAdults"]:checked').val());
     var numberOfChildren = parseInt($('input[name="numberOfChildren"]:checked').val());
+    var personAgeBet6And12 = 0;
+    var personAgeUpon12 = 0;
     for (p = 0; p < numOfPeople; p++) {
         var name = $('#name-' + p).val();
         var dateOfBirth = $('#dateOfBirth-'+p).val();
         var age = calculate_age(dateOfBirth);
-        var personAgeBet6And12 = 0;
-        var personAgeUpon12 = 0;
         if (age >= 6 && age < 12) {
             personAgeBet6And12 += 1;
         } else if (age >= 12) {
@@ -221,6 +221,10 @@ function checkFormValid() {
         
     }
     if (personAgeUpon12 != numberOfAdults || personAgeBet6And12 != numberOfChildren) {
+        console.log('>12: ', personAgeUpon12);
+        console.log('6~12: ', personAgeBet6And12);
+        console.log('numberOfAdults: ', numberOfAdults);
+        console.log('numberOfChildren: ', numberOfChildren);
         $('#error-numberOfMember').removeClass('hide');
         isError = true;
     } else {
