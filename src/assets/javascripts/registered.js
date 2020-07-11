@@ -255,8 +255,7 @@ $('#postOrder').click(function() {
             };
             setLoading(true);
             postOrder(payload)
-                .then(function (res) {
-                    setLoading(false);
+                .done(function (res) {
                     data = res.data;
                     if (data.message == 'goToPay') {
                         var formObject = data.paymentHtml;
@@ -268,6 +267,10 @@ $('#postOrder').click(function() {
                         alert('報名失敗');
                         window.location.href = '/registered';
                     }
+                }).fail(function(error) {
+                   alert('Oops! Something wrong!');
+                }).always(function() {
+                   setLoading(false);
                 })
         } else {
             alert('請勾選同意');

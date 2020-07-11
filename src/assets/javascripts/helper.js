@@ -54,13 +54,17 @@ function getOrderById(id) {
     });
 }
 function postOrder(payload) {
-   return axios.post('/api/orders', payload, {
-       headers: {
-           'Content-Type': 'application/json',
-       },
-   }).catch(function (error) {
-       console.log(error);
-   });
+    var defer = $.Deferred();
+    axios.post('/api/orders', payload, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then(function(res) {
+        defer.resolve(res);
+    }).catch(function (error) {
+        defer.reject(error);
+    });
+    return defer;
 }
 function patchOrderById(id, payload) {
     return axios.patch('/api/orders/' + id, payload,{
@@ -115,7 +119,7 @@ function setLoading(show) {
     if (show) {
         $('.Loading-box').removeClass('hide');
     } else {
-        if ($('.Loading-box').hasClass('hide')) {
+        if (!$('.Loading-box').hasClass('hide')) {
             $('.Loading-box').addClass('hide');
         }
     }
