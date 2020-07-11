@@ -37,30 +37,50 @@ $('#numberOfAdults, #numberOfChildren').keyup(function (e) {
     countFee();
 })
 function appendAvailableDate(dates) {
-    var item = ''
+    var item = '';
+    var freeItem = ''
+    var weekDaysItem = '';
+    var weekEndItem = '';
     var foundDefault = false;
     _.each(dates, function(v, i) {
+        var planType = v.planType;
+        var c_planType = '';
+        if (planType == 'T1') {
+            c_planType = '第一航廈團';
+        } else if (planType == 'T2') {
+            c_planType = '第二航廈團'
+        }
         var date = v.date;
         var remainingQuota = v.remainingQuota;
         var day = v.dayOfWeek;
         var id = v.id;
         var checked = '';
-        // var checked = (i==0)?'checked':'';
         var disabled = (remainingQuota==0)?'disabled':'';
         if (!foundDefault && remainingQuota != 0) {
             checked = 'checked';
             foundDefault = true;
         }
-        item += '<div class="column-x2"><input name="planDate" id="' + id + '" type="radio" value="' + date + '" ' + checked + ' '+ disabled+'>' + date + '(' + day + ')<font class="red">(剩餘：' + remainingQuota + '人)</font></div>'
+        item = '<div class="column-x2"><input name="planDate" id="' + id + '" type="radio" data-plan-type="' + planType + '" value="' + date + '" ' + checked + ' ' + disabled + '>' + date + '(' + day + ') ' + c_planType + '<font class="red">(剩餘：' + remainingQuota + '人)</font></div>'
+        if (date == '2020-07-25') {
+            freeItem += item;
+        } else if (day == '六' || day == '日') {
+            weekEndItem += item;
+        } else {
+            weekDaysItem += item;
+        }
     })
-    $('#available_date').empty();
-    $('#available_date').append(item);
+    $('#free-available-date').empty();
+    $('#free-available-date').append(freeItem);
+    $('#weekdays-available-date').empty();
+    $('#weekdays-available-date').append(weekDaysItem);
+    $('#weekend-available-date').empty();
+    $('#weekend-available-date').append(weekEndItem);
 }
 function setPlan() {
     getPlan().then(function (res) {
         var data = res.data;
-        var planType = $('input[name="planType"]:checked').val();
-        data = _.filter(data, ['planType', planType]);
+        // var planType = $('input[name="planType"]:checked').val();
+        // data = _.filter(data, ['planType', planType]);
         appendAvailableDate(data);
     })
 }
@@ -212,7 +232,8 @@ $('#postOrder').click(function() {
     if (isValid) {
         var agree = JSON.parse($('input[name="agree"]:checked').val());
         if (agree) {
-            var planType = $('input[name="planType"]:checked').val();
+            // var planType = $('input[name="planType"]:checked').val();
+            var planType = $('input[name="planDate"]:checked')[0].dataset.planType;
             var planDate = $('input[name="planDate"]:checked').val();
             var numberOfAdults = parseInt($('#numberOfAdults').val() ? $('#numberOfAdults').val() :0);
             var numberOfChildren = parseInt($('#numberOfChildren').val() ? $('#numberOfChildren').val():0);
