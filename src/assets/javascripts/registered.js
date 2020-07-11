@@ -1,7 +1,7 @@
-var feeForAdult = 1000;
-var feeForChild = 800;
+// var feeForAdult = 1000;
+// var feeForChild = 800;
 $(document).ready(function () {
-    $('#feeByMember').html(0);
+    // $('#feeByMember').html(0);
     setPlan();
     appendPeopleForm();
 })
@@ -13,29 +13,29 @@ function setTwCitySelector(el) {
         hasZipcode: false
     });
 }
-function countFee() {
-    $('#feeByMember').html(0);
-    var isFeeByAdultCheck = $('#feeByAdultCheck').prop("checked");
-    var isFeeByChildCheck = $('#feeByChildCheck').prop("checked");
-    if (isFeeByAdultCheck) {
-        var fee = parseInt($('#feeByMember').html());
-        var numberOfAdults = parseInt($('#numberOfAdults').val() ? $('#numberOfAdults').val():0);
-        fee += numberOfAdults * feeForAdult;
-        $('#feeByMember').html(fee);
-    }
-    if (isFeeByChildCheck) {
-        var fee = parseInt($('#feeByMember').html());
-        var numberOfChildren = parseInt($('#numberOfChildren').val() ? $('#numberOfChildren').val():0);
-        fee += numberOfChildren * feeForChild;
-        $('#feeByMember').html(fee);
-    }
-}
-$('#feeByAdultCheck, #feeByChildCheck').change(function() {
-    countFee();
-})
-$('#numberOfAdults, #numberOfChildren').keyup(function (e) {
-    countFee();
-})
+// function countFee() {
+//     $('#feeByMember').html(0);
+//     var isFeeByAdultCheck = $('#feeByAdultCheck').prop("checked");
+//     var isFeeByChildCheck = $('#feeByChildCheck').prop("checked");
+//     if (isFeeByAdultCheck) {
+//         var fee = parseInt($('#feeByMember').html());
+//         var numberOfAdults = parseInt($('#numberOfAdults').val() ? $('#numberOfAdults').val():0);
+//         fee += numberOfAdults * feeForAdult;
+//         $('#feeByMember').html(fee);
+//     }
+//     if (isFeeByChildCheck) {
+//         var fee = parseInt($('#feeByMember').html());
+//         var numberOfChildren = parseInt($('#numberOfChildren').val() ? $('#numberOfChildren').val():0);
+//         fee += numberOfChildren * feeForChild;
+//         $('#feeByMember').html(fee);
+//     }
+// }
+// $('#feeByAdultCheck, #feeByChildCheck').change(function() {
+//     countFee();
+// })
+// $('#numberOfAdults, #numberOfChildren').keyup(function (e) {
+//     countFee();
+// })
 function appendAvailableDate(dates) {
     var item = '';
     var freeItem = ''
@@ -146,21 +146,6 @@ function checkFormValid() {
     } else {
        $('.error-planDate').addClass('hide');
     }
-    // Q4
-    var isFeeByAdultCheck = $('#feeByAdultCheck').prop("checked");
-    var isFeeByChildCheck = $('#feeByChildCheck').prop("checked");
-    if (!isFeeByAdultCheck && !isFeeByChildCheck) {
-        $('.error-numberOfMember').removeClass('hide');
-        isError = true;
-    } else if (isFeeByAdultCheck && $('#numberOfAdults').val() == '') {
-        $('.error-numberOfMember').removeClass('hide');
-        isError = true;
-    } else if (isFeeByChildCheck && $('#numberOfChildren').val() == '') {
-        $('.error-numberOfMember').removeClass('hide');
-        isError = true;
-    } else {
-       $('.error-numberOfMember').addClass('hide');
-    }
     // people
     var numOfPeople = $('.person-table-box').length;
     for (p = 0; p < numOfPeople; p++) {
@@ -235,8 +220,10 @@ $('#postOrder').click(function() {
             // var planType = $('input[name="planType"]:checked').val();
             var planType = $('input[name="planDate"]:checked')[0].dataset.planType;
             var planDate = $('input[name="planDate"]:checked').val();
-            var numberOfAdults = parseInt($('#numberOfAdults').val() ? $('#numberOfAdults').val() :0);
-            var numberOfChildren = parseInt($('#numberOfChildren').val() ? $('#numberOfChildren').val():0);
+            // var numberOfAdults = parseInt($('#numberOfAdults').val() ? $('#numberOfAdults').val() :0);
+            // var numberOfChildren = parseInt($('#numberOfChildren').val() ? $('#numberOfChildren').val():0);
+            var numberOfAdults = parseInt($('input[name="numberOfAdults"]:checked').val());
+            var numberOfChildren = parseInt($('input[name="numberOfChildren"]:checked').val());
             var accomodation = JSON.parse($('input[name="accomodation"]:checked').val());
             var persons = [];
             var numOfPeople = $('.person-table-box').length;
