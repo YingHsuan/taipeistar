@@ -2,19 +2,19 @@
 <section id="page-registered">
     <div class="text-content">
         <div class="bg-top">
-            <div class="reg-title"><img src="images/registered_title.png"></div>
+            <div class="reg-title"><img src="images/registered_title.png" class="reg-title-pic"></div>
             <img src="images/text_content_top_bg.png" class="text-content-top">
         </div>
         <div class="bg-center">
             <!-------------- table form -------------->
             <div class="text-box">
                 <div class="q-content">
-                    防疫調查事項<br>
-                    因配合政府防疫措施，請確認欲報名之活動日期當日起14天內(含)，確認均無出/入境紀錄者，方可進行後續報名程序(含報名者本人及其他攜伴全員)。
+                    <font color="blue"><strong>防疫調查事項<br>
+                    因配合政府防疫措施，請確認欲報名之活動日的前14天內(含)，確認均無出/入境紀錄者，方可進行後續報名程序(含報名者本人及其他攜伴全員)。</strong></font>
                 </div>
                 <img src="images/registered_content_line.png" class="q-line">
                 <div class="q-title"><strong>Q1.希望報名的行程：</strong></div>
-                <div class="q-content">免費梯次</div>
+                <div class="q-content">免費梯次-免費100名由桃園機場公司贊助(報名成功與否，以實際報名送出時間為準)</div>
                 <div id="free-available-date" class="q-content clearfix">
                 </div><br>
                 <div class="q-content">平日梯次</div>
@@ -22,7 +22,9 @@
                 <div class="q-content">假日梯次</div>
                 <div id="weekend-available-date" class="q-content clearfix"></div><br>
                 <div class="q-content">
-                    ★平日即假日梯次每日限額200名，50人即成團。<br>
+                    ★全國民眾至12歲以上(即民國97年9月1日(含)前出生者)<br>
+                    　第一航廈每梯限額200名，50人即成團。<br>
+                    　第二航廈每梯限額200名，50人即成團。<br>
                     ★若報名人數較少或不足，主辦單位將有權併團或取消成團(將以e-mail通知)，會盡量安排您所希望選擇的航廈別。
                 </div>
                 <img src="images/registered_content_line.png" class="q-line">
@@ -32,25 +34,28 @@
                 <font class="error-planDate red error hide">請勾選報名日期</font>
                 <div id="available_date" class="q-content clearfix"></div>-->
                 <div class="q-title">
-                    <strong>Q2.預計攜伴人數(參與團員均需詳填個資)：</strong>
+                    <strong>Q2.總共攜伴人數(參與團員均需詳填個資)：</strong>
                     <font id="error-numberOfMember" class="red error hide">參與團員人數與個資資料不符</font>
                 </div>
                 <div class="q-content clearfix">
                     國民價 N.T. 1,000元/位<br>
-                    全國民眾~12歲以上(即民國97年9月1日(含)前出生者)<br>
+                    全國民眾至12歲以上(即民國97年9月1日(含)前出生者)<br>
                     <input name="numberOfAdults" type="radio" checked value="1">1位&nbsp;&nbsp;
                     <input name="numberOfAdults" type="radio" value="2">2位&nbsp;&nbsp;
                     <input name="numberOfAdults" type="radio" value="3">3位&nbsp;&nbsp;
                     <input name="numberOfAdults" type="radio" value="4">4位&nbsp;&nbsp;
                     <input name="numberOfAdults" type="radio" value="5">5位<br><br>
                     國小優惠價 N.T. 800元/位<br>
-                    12歲以下(即民國97年9月2日(含)後出生者)~7歲以上(含109學年度小一新生，即民國103年9月1日(含)前出生者)<br>
+                    12歲以下(即民國97年9月2日(含)後出生者)至7歲以上(含109學年度小一新生，即民國103年9月1日(含)前出生者)<br>
                     <input name="numberOfChildren" type="radio" checked value="0">0位&nbsp;&nbsp;
                     <input name="numberOfChildren" type="radio" value="1">1位&nbsp;&nbsp;
                     <input name="numberOfChildren" type="radio" value="2">2位&nbsp;&nbsp;
                     <input name="numberOfChildren" type="radio" value="3">3位&nbsp;&nbsp;
                     <input name="numberOfChildren" type="radio" value="4">4位&nbsp;&nbsp;
-                    <input name="numberOfChildren" type="radio" value="5">5位
+                    <input name="numberOfChildren" type="radio" value="5">5位<br><br>
+                    <div class="column3">
+                        <font class="red"><strong>總計費用：&nbsp;&nbsp;<span id="feeByMember"></span>&nbsp;&nbsp;NT</strong></font>
+                    </div>
                 </div>
                 <img src="images/registered_content_line.png" class="q-line">
                 <div class="q-title"><strong>參與團員請詳填個資</strong></div>
@@ -65,11 +70,12 @@
                 </div>
                 <img src="images/registered_content_line.png" class="q-line">
                 <div class="q-title">
-                    <strong>Q4.是否同意個資法及桃機相關法令規定條款：</strong>
+                    <strong>Q4.是否同意個資法及桃機相關法令規定條款：</strong><br>
                     <input name="agree" type="radio" value="true">同意 <input name="agree" type="radio" value="false" checked>不同意<br>
-                </div>
+                    同意方可進行後續報名程序<br>
+                </div><br>
                 <div class="q-content clearfix">
-                    <a class="read-terms">閱讀個資條款</a>
+                    <strong>閱讀個資條款</strong>
                     <div class="privacy-content">
                         <ul class="num">
                             <li>送出報名資料前，請再次檢查各項個資資料是否均正確無誤，因需提前申請辦理機場參觀證，報名後資料及名單將無法修改，報名資格與梯次亦不得更換或轉讓，敬請協助配合。</li>
@@ -83,6 +89,10 @@
                             <li>完成報名此活動，則表示同意且願意遵守本活動辦法內容及上列相關注意事項。</li>
                         </ul>
                     </div>
+                </div>
+                <img src="images/registered_content_line.png" class="q-line">
+                <div class="q-content">
+                    <font class="red">送出報名後系統會自動連結線上刷卡付款頁面，完成刷卡後主要連絡人E-mail信箱會收到報名繳費完成通知信，才算完成報名程序！</font>
                 </div>
             </div>
             <!-------------- /table form -------------->

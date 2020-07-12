@@ -615,7 +615,7 @@ ul.num-ch li .column {
 
     section#hp-main .main-content .column-lf .more-bt {
         clear: both;
-        width: 90px;
+        width: 160px;
         margin: 40px auto 0 auto;
     }
 
@@ -1115,15 +1115,15 @@ ul.num-ch li .column {
 
     section#page-registered .text-content .bg-center .text-box .q-content .privacy-content {
         width: 100%;
-        display: none;
+        /*display: none;*/
     }
 
     section#page-registered .text-content img.regi-submit-bt {
-        width: 500px;
+        width: 400px;
         height: auto;
         position: absolute;
-        bottom: -80px;
-        left: calc(50% - 250px);
+        bottom: -40px;
+        left: calc(50% - 200px);
     }
 
     section#page-registered .text-content img.regi-illu {
@@ -1429,7 +1429,7 @@ ul.num-ch li .column {
     footer {
         clear: both;
         width: 100%;
-        padding: 32vw 0 20px 0;
+        padding: 32vw 0 40px 0;
         background-image: url("../images/footer_bg.jpg");
         background-position: center top;
         background-size: 100%;
@@ -1496,8 +1496,15 @@ ul.num-ch li .column {
     footer .footer-text-box .social-icon img {
         margin: 0 20px;
     }
+    
+    footer .support-logo-box { width: 100%; padding: 0 60px; box-sizing: border-box;}
+    footer .support-logo-box .host-logo { width: 100%; margin: 0 0 20px 0; color: #fff; display: flex; justify-content: center; align-items: center;}
+    footer .support-logo-box .host-logo img.footer-tia-logo { width: 200px; height: auto;}
+    footer .support-logo-box .co-org-logo { width: 100%; margin: 0 0 20px 0; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
+    footer .support-logo-box .co-org-logo .caption { width: 100%; margin: 0 0 20px 0; color: #fff; text-align: center;}
+    footer .support-logo-box .co-org-logo img { margin: 0 20px 20px 20px;}
 
-
+    
 }
 
 
@@ -1695,7 +1702,7 @@ ul.num-ch li .column {
 
     section#hp-main .main-content .column-lf .more-bt {
         clear: both;
-        width: 90px;
+        width: 160px;
         margin: 40px auto 0 auto;
     }
 
@@ -2207,15 +2214,15 @@ ul.num-ch li .column {
 
     section#page-registered .text-content .bg-center .text-box .q-content .privacy-content {
         width: 100%;
-        display: none;
+        /*display: none;*/
     }
 
     section#page-registered .text-content img.regi-submit-bt {
-        width: 500px;
+        width: 400px;
         height: auto;
         position: absolute;
-        bottom: -80px;
-        left: calc(50% - 250px);
+        bottom: -40px;
+        left: calc(50% - 200px);
     }
 
     section#page-registered .text-content img.regi-illu {
@@ -2561,7 +2568,7 @@ ul.num-ch li .column {
     footer {
         clear: both;
         width: 100%;
-        padding: 32vw 0 20px 0;
+        padding: 32vw 0 40px 0;
         background-image: url("../images/footer_bg.jpg");
         background-position: center top;
         background-size: 100%;
@@ -2628,6 +2635,14 @@ ul.num-ch li .column {
     footer .footer-text-box .social-icon img {
         margin: 0 20px;
     }
+    
+    footer .support-logo-box { width: 100%; padding: 0 60px; box-sizing: border-box;}
+    footer .support-logo-box .host-logo { width: 100%; margin: 0 0 20px 0; color: #fff; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
+    footer .support-logo-box .host-logo .caption { width: 100%; margin: 0 0 20px 0; color: #fff; text-align: center;}
+    footer .support-logo-box .host-logo img.footer-tia-logo { width: 200px; height: auto;}
+    footer .support-logo-box .co-org-logo { width: 100%; margin: 0 0 20px 0; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
+    footer .support-logo-box .co-org-logo .caption { width: 100%; margin: 0 0 20px 0; color: #fff; text-align: center;}
+    footer .support-logo-box .co-org-logo img { margin: 0 20px 20px 20px;}
 
 
 }
@@ -2827,7 +2842,7 @@ ul.num-ch li .column {
 
     section#hp-main .main-content .column-lf .more-bt {
         clear: both;
-        width: 90px;
+        width: 160px;
         margin: 40px auto 0 auto;
     }
 
@@ -3098,7 +3113,7 @@ ul.num-ch li .column {
         left: 0;
     }
 
-    section#page-registered .text-content .bg-top .reg-title img {
+    section#page-registered .text-content .bg-top .reg-title img.reg-title-pic {
         width: 50%;
         height: auto;
     }
@@ -3333,15 +3348,15 @@ ul.num-ch li .column {
 
     section#page-registered .text-content .bg-center .text-box .q-content .privacy-content {
         width: 100%;
-        display: none;
+        /*display: none;*/
     }
 
     section#page-registered .text-content img.regi-submit-bt {
-        width: 36vw;
+        width: 32vw;
         height: auto;
         position: absolute;
-        bottom: -5vw;
-        left: calc(50% - 18vw);
+        bottom: -4vw;
+        left: calc(50% - 16vw);
     }
 
     section#page-registered .text-content img.regi-illu {
@@ -3710,7 +3725,7 @@ ul.num-ch li .column {
     footer {
         clear: both;
         width: 100%;
-        padding: 32vw 0 20px 0;
+        padding: 32vw 0 40px 0;
         background-image: url("../images/footer_bg.jpg");
         background-position: center top;
         background-size: 100%;
@@ -3777,6 +3792,14 @@ ul.num-ch li .column {
     footer .footer-text-box .social-icon img {
         margin: 0 20px;
     }
+    
+    footer .support-logo-box { width: 100%; padding: 0 20px; box-sizing: border-box;}
+    footer .support-logo-box .host-logo { width: 100%; margin: 0 0 20px 0; color: #fff; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
+    footer .support-logo-box .host-logo .caption { width: 100%; margin: 0 0 20px 0; color: #fff; text-align: center;}
+    footer .support-logo-box .host-logo img.footer-tia-logo { width: 200px; height: auto;}
+    footer .support-logo-box .co-org-logo { width: 100%; margin: 0 0 20px 0; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
+    footer .support-logo-box .co-org-logo .caption { width: 100%; margin: 0 0 20px 0; color: #fff; text-align: center;}
+    footer .support-logo-box .co-org-logo img { margin: 0 20px 20px 20px;}
 
 
 }
@@ -4005,7 +4028,7 @@ ul.num-ch li .column {
 
     section#hp-main .main-content .column-lf .more-bt {
         clear: both;
-        width: 90px;
+        width: 160px;
         margin: 40px auto 0 auto;
     }
 
@@ -4294,7 +4317,7 @@ ul.num-ch li .column {
         left: 0;
     }
 
-    section#page-registered .text-content .bg-top .reg-title img {
+    section#page-registered .text-content .bg-top .reg-title img.reg-title-pic {
         width: 50%;
         height: auto;
     }
@@ -4517,7 +4540,7 @@ ul.num-ch li .column {
 
     section#page-registered .text-content .bg-center .text-box .q-content .privacy-content {
         width: 100%;
-        display: none;
+        /*display: none;*/
     }
 
     section#page-registered .text-content img.regi-submit-bt {
@@ -4884,7 +4907,7 @@ ul.num-ch li .column {
     footer {
         clear: both;
         width: 100%;
-        padding: 70vw 10px 20px 10px;
+        padding: 70vw 10px 40px 10px;
         background-image: url("../images/footer_bg_mo.jpg");
         background-position: center top;
         background-size: 100%;
@@ -4952,6 +4975,14 @@ ul.num-ch li .column {
     footer .footer-text-box .social-icon img {
         margin: 0 20px;
     }
+    
+    footer .support-logo-box { width: 100%; padding: 0 10px; box-sizing: border-box;}
+    footer .support-logo-box .host-logo { width: 100%; margin: 0 0 20px 0; color: #fff; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
+    footer .support-logo-box .host-logo .caption { width: 100%; margin: 0 0 20px 0; color: #fff; text-align: center;}
+    footer .support-logo-box .host-logo img.footer-tia-logo { width: 200px; height: auto;}
+    footer .support-logo-box .co-org-logo { width: 100%; margin: 0 0 20px 0; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
+    footer .support-logo-box .co-org-logo .caption { width: 100%; margin: 0 0 20px 0; color: #fff; text-align: center;}
+    footer .support-logo-box .co-org-logo img { margin: 0 20px 20px 20px;}
 
 
 }
