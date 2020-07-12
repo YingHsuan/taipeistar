@@ -39,6 +39,11 @@ app.listen(3000, function () {
             root: __dirname + '/docs'
         });
     });
+    app.get('/success', function (req, res) {
+        res.sendFile('success.html', {
+            root: __dirname + '/docs'
+        });
+    });
 
     // static files
     app.use('/config', express.static('doc/config'));
