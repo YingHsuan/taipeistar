@@ -115,7 +115,7 @@ function appendPeopleForm() {
                 '<div class="column"><input name="gender-' + numOfPeople + '" type="radio" value="男" checked>男&nbsp;&nbsp;<input name="gender-' + numOfPeople + '" type="radio" value="女">女</div>' +
                 '<div class="caption">出生年月日：</div>' +
                 '<div class="column">'+
-                    '<input id="dateOfBirth-' + numOfPeople + '"type="date" class="ymd" value="2000-01-01">' +
+                    '<input id="dateOfBirth-' + numOfPeople + '"type="date" class="ymd" value="2000-01-01" max="2014-09-01">' +
                     '<font id="error-dateOfBirth-' + numOfPeople + '" class="red error hide">請填寫</font>'+
                 '</div>'+
                 '<div class="caption">國籍：</div>'+
