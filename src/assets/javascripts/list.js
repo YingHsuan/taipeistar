@@ -132,7 +132,7 @@ function getAvailablePlans() {
 }
 function getOrders(availablePlans) {
     getOrder()
-    .then( function(res) {
+    .done( function(res) {
         orders = res.data;
         var selectedPlanType = $('#planType').val();
         var selectedPlanDate = $('#planDate').val();
@@ -207,7 +207,7 @@ function getOrders(availablePlans) {
                         '<td>' + (numOfAdult+numOfChild) + '</td>' +
                         '<td>' + c_accomodation + '</td>' +
                         '<td>'+
-                            '<select id="select_group_'+ order.id+'">'+
+                            '<select id="select_group_'+ order.id+'" data-order-id="'+order.id+'">'+
                                 groupOptions +
                             '</select>'+
                         '</td>'+
@@ -237,6 +237,7 @@ function getOrders(availablePlans) {
                                 $('#select_date_' + orderId).append(newDateOptions);
                                 $('#select_group_' + orderId).empty();
                                 $('#select_group_' + orderId).append(newGroupOptions);
+                                checkSaveInfoStatus(orderId);
                             });
                     })
                     $("select[id^='select_date_']").change(function (e) {
@@ -254,11 +255,16 @@ function getOrders(availablePlans) {
                                 })
                                 $('#select_group_' + orderId).empty();
                                 $('#select_group_' + orderId).append(newGroupOptions);
+                                checkSaveInfoStatus(orderId);
                             })
                             .catch(function () {
                                 $('#select_group_' + orderId).empty();
                                 $('#select_group_' + orderId).append(newGroupOptions);
                             })
+                    })
+                    $("select[id^='select_group_']").change(function(e) {
+                        var orderId = e.target.dataset.orderId;
+                        checkSaveInfoStatus(orderId);
                     })
                     $("input[id^='getInfo_']").click(function (e) {
                         var orderId = e.target.dataset.orderId;
@@ -383,18 +389,35 @@ function setInfo(orderId) {
         })
 }
 
-function saveInfo(orderId) {
-    var payload = {
-        planType = $('#select_type_'+orderId).val(),
-        planDate = $('#select_date_'+orderId).val(),
-        groupName = $('#select_group_' + orderId).val(),
-        comment = $('#comment_'+orderId).val(),
+function checkSaveInfoStatus(orderId) {
+    var planType = $('#select_type_' + orderId).val();
+    var planDate = $('#select_date_' + orderId).val();
+    var groupName = $('#select_group_' + orderId).val();
+    if (planType == '請選擇' || planDate == '請選擇' || groupName == '請選擇') {
+        $('#saveInfo_'+orderId).prop('disabled', true);
+    } else {
+        $('#saveInfo_' + orderId).prop('disabled', false);
     }
-    patchOrderById(orderId, payload)
-        .then(function(res) {
-            alert('儲存成功');
-            location.reload();
-        })
+}
+function saveInfo(orderId) {
+    var planType = $('#select_type_' + orderId).val();
+    var planDate = $('#select_date_' + orderId).val();
+    var groupName = $('#select_group_' + orderId).val();
+    if (planType != '請選擇' && planDate != '請選擇' && groupName != '請選擇') {
+        var payload = {
+            planType = planType,
+            planDate = planDate,
+            groupName = groupName,
+            comment = $('#comment_' + orderId).val(),
+        }
+        patchOrderById(orderId, payload)
+            .done(function (res) {
+                alert('儲存成功');
+                location.reload();
+            }).fail(function (res) {
+                alert('儲存失敗');
+            })
+    }
 }
 function sendMail() {
     var type = $('#planType').val();

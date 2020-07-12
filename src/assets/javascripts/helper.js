@@ -36,13 +36,17 @@ function getGroupInPlan(params) {
     });
 }
 function getOrder() {
-    return axios.get('/api/orders', {
+    var defer = $.Deferred();
+    axios.get('/api/orders', {
         headers: {
             'Content-Type': 'application/json',
         },
+    }).then(function (res) {
+        defer.resolve(res);
     }).catch(function (error) {
-        console.log(error);
+        defer.reject(error);
     });
+    return defer;
 }
 function getOrderById(id) {
     return axios.get('/api/orders/' + id, {
@@ -80,13 +84,17 @@ function postOrder(payload) {
     return defer;
 }
 function patchOrderById(id, payload) {
-    return axios.patch('/api/orders/' + id, payload,{
+    var defer = $.Deferred();
+    axios.patch('/api/orders/' + id, payload,{
         headers: {
             'Content-Type': 'application/json',
         },
+    }).then(function (res) {
+        defer.resolve(res);
     }).catch(function (error) {
-        console.log(error);
+        defer.reject(error);
     });
+    return defer;
 }
 function postGroupMailNotification(payload) {
     return axios.post('/api/group-mail-notification', payload, {
