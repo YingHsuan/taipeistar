@@ -22,6 +22,7 @@ function countFee() {
     if (!isFree()) {
         totalFee = numberOfAdults * feeForAdult + numberOfChildren * feeForChild;
     }
+    totalFee = FormatNumber(totalFee);
     $('#feeByMember').html(totalFee);
 }
 // $('#feeByAdultCheck, #feeByChildCheck').change(function() {
@@ -78,11 +79,7 @@ function appendAvailableDate(dates) {
     $('#weekend-available-date').empty();
     $('#weekend-available-date').append(weekEndItem);
     // init
-    if (isFree()) {
-        $('#feeByMember').html(0);
-    } else {
-        $('#feeByMember').html(1000);
-    }
+    countFee();
     $('input[name="planDate"]').change(function () {
         countFee();
     });
