@@ -34,6 +34,11 @@ app.listen(3000, function () {
             root: __dirname + '/docs'
         });
     });
+    app.get('/booking', function (req, res) {
+        res.sendFile('booking.html', {
+            root: __dirname + '/docs'
+        });
+    });
 
     // static files
     app.use('/config', express.static('doc/config'));
