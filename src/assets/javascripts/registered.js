@@ -1,7 +1,6 @@
-// var feeForAdult = 1000;
-// var feeForChild = 800;
+var feeForAdult = 1000;
+var feeForChild = 800;
 $(document).ready(function () {
-    // $('#feeByMember').html(0);
     setPlan();
     appendPeopleForm();
 })
@@ -13,29 +12,32 @@ function setTwCitySelector(el) {
         hasZipcode: false
     });
 }
-// function countFee() {
-//     $('#feeByMember').html(0);
-//     var isFeeByAdultCheck = $('#feeByAdultCheck').prop("checked");
-//     var isFeeByChildCheck = $('#feeByChildCheck').prop("checked");
-//     if (isFeeByAdultCheck) {
-//         var fee = parseInt($('#feeByMember').html());
-//         var numberOfAdults = parseInt($('#numberOfAdults').val() ? $('#numberOfAdults').val():0);
-//         fee += numberOfAdults * feeForAdult;
-//         $('#feeByMember').html(fee);
-//     }
-//     if (isFeeByChildCheck) {
-//         var fee = parseInt($('#feeByMember').html());
-//         var numberOfChildren = parseInt($('#numberOfChildren').val() ? $('#numberOfChildren').val():0);
-//         fee += numberOfChildren * feeForChild;
-//         $('#feeByMember').html(fee);
-//     }
-// }
+function countFee() {
+    // $('#feeByMember').html(1000);
+    // var isFeeByAdultCheck = $('#feeByAdultCheck').prop("checked");
+    // var isFeeByChildCheck = $('#feeByChildCheck').prop("checked");
+    var totalFee = 0;
+    var numberOfAdults = parseInt($('input[name="numberOfAdults"]:checked').val());
+    var numberOfChildren = parseInt($('input[name="numberOfChildren"]:checked').val());
+    if (!isFree()) {
+        totalFee = numberOfAdults * feeForAdult + numberOfChildren * feeForChild;
+    }
+    $('#feeByMember').html(totalFee);
+}
 // $('#feeByAdultCheck, #feeByChildCheck').change(function() {
 //     countFee();
 // })
 // $('#numberOfAdults, #numberOfChildren').keyup(function (e) {
 //     countFee();
 // })
+function isFree() {
+    var planDate = $('input[name="planDate"]:checked').val()
+    var isFree = false;
+    if (planDate == '2020-07-25') {
+        isFree = true;
+    }
+    return isFree;
+}
 function appendAvailableDate(dates) {
     var item = '';
     var freeItem = ''
@@ -75,6 +77,15 @@ function appendAvailableDate(dates) {
     $('#weekdays-available-date').append(weekDaysItem);
     $('#weekend-available-date').empty();
     $('#weekend-available-date').append(weekEndItem);
+    // init
+    if (isFree()) {
+        $('#feeByMember').html(0);
+    } else {
+        $('#feeByMember').html(1000);
+    }
+    $('input[name="planDate"]').change(function () {
+        countFee();
+    });
 }
 function setPlan() {
     getPlan().then(function (res) {
@@ -84,8 +95,11 @@ function setPlan() {
         appendAvailableDate(data);
     })
 }
-$('input[name="planType"]').change(function() {
-    setPlan();
+$('input[name="numberOfAdults"]').change(function () {
+    countFee();
+})
+$('input[name="numberOfChildren"]').change(function () {
+    countFee();
 })
 function appendPeopleForm() {
     var item = '';
@@ -221,10 +235,6 @@ function checkFormValid() {
         
     }
     if (personAgeUpon12 != numberOfAdults || personAgeBet6And12 != numberOfChildren) {
-        console.log('>12: ', personAgeUpon12);
-        console.log('6~12: ', personAgeBet6And12);
-        console.log('numberOfAdults: ', numberOfAdults);
-        console.log('numberOfChildren: ', numberOfChildren);
         $('#error-numberOfMember').removeClass('hide');
         isError = true;
     } else {
