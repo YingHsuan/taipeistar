@@ -169,6 +169,13 @@ function getOrders(availablePlans) {
                 var selected = t == order.planDate ? "selected" : "";
                 dateOptions += '<option ' + selected + ' value="'+t+'">' + t + ' (' + order.planDayOfWeek +')</option>';
             })
+            var paymentSucc = '';
+            var paymentFail = '';
+            if (order.paymentDone) {
+                paymentSucc = 'selected';
+            } else {
+                paymentFail = 'selected';
+            }
             // if (resultAvailablePlanGroups.length > 0) {
             //     var groupsFromAvailablePlan = resultAvailablePlanGroups[0].groups
             //     _.each(groupsFromAvailablePlan, function (t, index) {
@@ -213,7 +220,12 @@ function getOrders(availablePlans) {
                         '</td>'+
                         '<td><input id="getInfo_'+ order.id +'" type="button" value="查詢" data-order-id="' + order.id +'"></td>' +
                         '<td><textarea id="comment_'+ order.id+'">' + order.comment + '</textarea></td>' +
-                        '<td>成功</td>'+
+                        '<td>'+
+                            '<select id="select_paymentdone_'+order.id+'">'+
+                                '<option value="true" ' + paymentSucc +'>成功</option>'+
+                                '<option value="false" ' + paymentFail + '>取消</option>' +
+                            '</select>'+
+                        '</td>'+
                         '<td>' + order.paymentMerchantTradeNo +'</td>'+
                         '<td>' + order.registrationDate +'</td>'+
                         '<td><input id="saveInfo_'+order.id +'" type="button" value="儲存" data-order-id="'+ order.id +'"></td></tr>'
@@ -403,12 +415,15 @@ function saveInfo(orderId) {
     var planType = $('#select_type_' + orderId).val();
     var planDate = $('#select_date_' + orderId).val();
     var groupName = $('#select_group_' + orderId).val();
+    var comment = $('#comment_' + orderId).val();
+    var paymentDone = JSON.parse($('#select_paymentdone_' + orderId).val());
     if (planType != '請選擇' && planDate != '請選擇' && groupName != '請選擇') {
         var payload = {
             planType = planType,
             planDate = planDate,
             groupName = groupName,
-            comment = $('#comment_' + orderId).val(),
+            comment = comment,
+            paymentDone = paymentDone,
         }
         patchOrderById(orderId, payload)
             .done(function (res) {
