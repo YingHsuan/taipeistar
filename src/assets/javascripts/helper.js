@@ -8,32 +8,44 @@ function getPlan() {
     });
 }
 function getAvailablePlan() {
-    return axios.get('/api/available-plans', {
+    var defer = $.Deferred();
+    axios.get('/api/available-plans', {
         headers: {
             'Content-Type': 'application/json',
         },
+    }).then(function (res) {
+        defer.resolve(res);
     }).catch(function (error) {
-        console.log(error);
+        defer.reject(error);
     });
+    return defer;
 }
 function getGroupInPlanById(id) {
-    return axios.get('/api/groups-in-plan/'+id, {
+    var defer = $.Deferred();
+    axios.get('/api/groups-in-plan/'+id, {
         headers: {
             'Content-Type': 'application/json',
         },
+    }).then(function (res) {
+        defer.resolve(res);
     }).catch(function (error) {
-        console.log(error);
+        defer.reject(error);
     });
+    return defer;
 }
 function getGroupInPlan(params) {
-    return axios.get('/api/groups-in-plan', {
+    var defer = $.Deferred();
+    axios.get('/api/groups-in-plan', {
         headers: {
             'Content-Type': 'application/json',
         },
         params: params,
+    }).then(function (res) {
+        defer.resolve(res);
     }).catch(function (error) {
-        console.log(error);
+        defer.reject(error);
     });
+    return defer.promise();
 }
 function getOrder() {
     var defer = $.Deferred();

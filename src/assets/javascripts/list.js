@@ -94,15 +94,14 @@ function setPlanGroup() {
         $('#planGroup').append(options);
     } else {
         getGroupInPlan(params)
-            .then(function (res) {
+            .done(function (res) {
                 var groups = res.data;
                 _.each(groups, function (value, id) {
                     options += '<option value="' + id + '">' + id + '(' + value + '人)' + '</option>';
                 })
                 $('#planGroup').empty();
                 $('#planGroup').append(options);
-            })
-            .catch(function () {
+            }).fail(function () {
                 $('#planGroup').empty();
                 $('#planGroup').append(options);
             })
@@ -111,7 +110,7 @@ function setPlanGroup() {
 }
 function getAvailablePlans() {
     getAvailablePlan()
-    .then( function(res) {
+    .done( function(res) {
         var availablePlans = res.data;
         // resultAvailablePlanType = _.map(_.uniqBy(availablePlans, 'planType'), 'planType');
         // resultAvailablePlanDate = _.map(_.uniqBy(availablePlans, 'date'), 'date');
@@ -152,8 +151,10 @@ function getOrders(availablePlans) {
                 'groupName': selectedPlanGroup
             });
         };
-        var orderItem = '';
         resultAvailablePlanType = _.map(_.uniqBy(availablePlans, 'planType'), 'planType');
+        $('#list').empty();
+        var orderItem = '';
+        var count = 0;
         _.each(orders, function(order) {
             var c_accomodation = (order.accomodation)?'有':'無';
             var numOfAdult = order.numberOfAdults;
@@ -161,14 +162,30 @@ function getOrders(availablePlans) {
             var typeOptions, dateOptions, groupOptions = '';
             var resultAvailablePlanDate = _.map(_.filter(availablePlans, { 'planType': order.planType }), 'date');
             var resultAvailablePlanGroups = _.filter(_.filter(availablePlans, { 'planType': order.planType }), {'date': order.planDate});
+            var typeHasSelected = false;
             _.each(resultAvailablePlanType, function (t) {
-                var selected = t == order.planType ? "selected" : "";
-                typeOptions += '<option ' + selected + '>' + t + '</option>';
+                var selected = '';
+                if (t == order.planType) {
+                    selected = 'selected';
+                    typeHasSelected = true;
+                }
+                typeOptions += '<option ' + selected + ' value="'+t+'">' + t + '</option>';
             })
+            if (!typeHasSelected) {
+                typeOptions += '<option selected value="'+order.planType+'">' + t + '</option>';
+            }
+            var dateHasSelected = false;
             _.each(resultAvailablePlanDate, function (t) {
-                var selected = t == order.planDate ? "selected" : "";
+                var selected = '';
+                if (t == order.planDate) {
+                    selected = 'selected';
+                    dateHasSelected = true;
+                }
                 dateOptions += '<option ' + selected + ' value="'+t+'">' + t + ' (' + order.planDayOfWeek +')</option>';
             })
+            if (!dateHasSelected) {
+                dateOptions += '<option selected value="' + order.planDate + '">' + order.planDate + ' (' + order.planDayOfWeek + ')</option>';
+            }
             var paymentSucc = '';
             var paymentFail = '';
             if (order.paymentDone) {
@@ -190,105 +207,108 @@ function getOrders(availablePlans) {
                 "planDate": order.planDate,
             }
             getGroupInPlan(params)
-                .then(function (res) {
+                .done(function (res) {
+                    count +=1;
                     var groups = res.data;
                     _.each(groups, function (t, index) {
                         var selected = index == order.groupName ? "selected" : "";
                         groupOptions += '<option ' + selected + ' value="' + index + '">' + index + '</option>';
                     })
-                    orderItem += '<tr><td>'+order.id +'</td>'+
-                        '<td>'+
-                            '<select id="select_type_' + order.id +'" data-order-id="'+ order.id +'">'+
-                                typeOptions+
-                            '</select>'+
-                        '</td>'+
-                        '<td>'+
-                            '<select id="select_date_' + order.id + '" data-order-id="' + order.id + '">' +
-                                dateOptions +
-                            '</select>'+
-                        '</td>'+
-                        '<td>'+order.people[0].name+'</td>'+
-                        '<td>'+order.people[0].email+'</td>'+
-                        '<td>' + numOfAdult +'</td>'+
+                    orderItem += '<tr><td>' + order.id + '</td>' +
+                        '<td>' +
+                        '<select id="select_type_' + order.id + '" data-order-id="' + order.id + '">' +
+                        typeOptions +
+                        '</select>' +
+                        '</td>' +
+                        '<td>' +
+                        '<select id="select_date_' + order.id + '" data-order-id="' + order.id + '">' +
+                        dateOptions +
+                        '</select>' +
+                        '</td>' +
+                        '<td>' + order.people[0].name + '</td>' +
+                        '<td>' + order.people[0].email + '</td>' +
+                        '<td>' + numOfAdult + '</td>' +
                         '<td>' + numOfChild + '</td>' +
-                        '<td>' + (numOfAdult+numOfChild) + '</td>' +
+                        '<td>' + (numOfAdult + numOfChild) + '</td>' +
                         '<td>' + c_accomodation + '</td>' +
-                        '<td>'+
-                            '<select id="select_group_'+ order.id+'" data-order-id="'+order.id+'">'+
-                                groupOptions +
-                            '</select>'+
-                        '</td>'+
-                        '<td><input id="getInfo_'+ order.id +'" type="button" value="查詢" data-order-id="' + order.id +'"></td>' +
-                        '<td><textarea id="comment_'+ order.id+'">' + order.comment + '</textarea></td>' +
-                        '<td>'+
-                            '<select id="select_paymentdone_'+order.id+'">'+
-                                '<option value="true" ' + paymentSucc +'>成功</option>'+
-                                '<option value="false" ' + paymentFail + '>取消</option>' +
-                            '</select>'+
-                        '</td>'+
-                        '<td>' + order.paymentMerchantTradeNo +'</td>'+
-                        '<td>' + order.registrationDate +'</td>'+
-                        '<td><input id="saveInfo_'+order.id +'" type="button" value="儲存" data-order-id="'+ order.id +'"></td></tr>'
-                    $('#list').empty();
-                    $('#list').append(orderItem);
-                    $("select[id^='select_type_']").change(function (e) {
-                        var selectedValue = e.target.value;
-                        var orderId = e.target.dataset.orderId;
-                        getAvailablePlan()
-                            .then(function (res) {
-                                var availablePlans = _.filter(res.data, {
-                                    'planType': selectedValue
+                        '<td>' +
+                        '<select id="select_group_' + order.id + '" data-order-id="' + order.id + '">' +
+                        groupOptions +
+                        '</select>' +
+                        '</td>' +
+                        '<td><input id="getInfo_' + order.id + '" type="button" value="查詢" data-order-id="' + order.id + '"></td>' +
+                        '<td><textarea id="comment_' + order.id + '">' + order.comment + '</textarea></td>' +
+                        '<td>' +
+                        '<select id="select_paymentdone_' + order.id + '">' +
+                        '<option value="true" ' + paymentSucc + '>成功</option>' +
+                        '<option value="false" ' + paymentFail + '>取消</option>' +
+                        '</select>' +
+                        '</td>' +
+                        '<td>' + order.paymentMerchantTradeNo + '</td>' +
+                        '<td>' + order.registrationDate + '</td>' +
+                        '<td><input id="saveInfo_' + order.id + '" type="button" value="儲存" data-order-id="' + order.id + '"></td></tr>'
+                    
+                    if (count == orders.length) {
+                        $('#list').append(orderItem);
+                        $("select[id^='select_type_']").change(function (e) {
+                            var selectedValue = e.target.value;
+                            var orderId = e.target.dataset.orderId;
+                            getAvailablePlan()
+                                .done(function (res) {
+                                    var availablePlans = _.filter(res.data, {
+                                        'planType': selectedValue
+                                    });
+                                    // var dates = _.map(_.uniqBy(availablePlans, 'date'), 'date');
+                                    var newDateOptions = '<option selected>請選擇</option>';
+                                    var newGroupOptions = '<option selected>請選擇</option>';
+                                    _.each(availablePlans, function (plan) {
+                                        newDateOptions += '<option value="' + plan.date + '">' + plan.date + ' (' + plan.dayOfWeek + ')' + '</option>'
+                                    })
+                                    $('#select_date_' + orderId).empty();
+                                    $('#select_date_' + orderId).append(newDateOptions);
+                                    $('#select_group_' + orderId).empty();
+                                    $('#select_group_' + orderId).append(newGroupOptions);
+                                    checkSaveInfoStatus(orderId);
                                 });
-                                // var dates = _.map(_.uniqBy(availablePlans, 'date'), 'date');
-                                var newDateOptions = '<option selected>請選擇</option>';
-                                var newGroupOptions = '<option selected>請選擇</option>';
-                                _.each(availablePlans, function (plan) {
-                                    newDateOptions += '<option value="' + plan.date + '">' + plan.date + ' (' + plan.dayOfWeek + ')' + '</option>'
+                        })
+                        $("select[id^='select_date_']").change(function (e) {
+                            var orderId = e.target.dataset.orderId;
+                            var newGroupOptions = '<option selected>請選擇</option>';
+                            var params = {
+                                "planType": $('#select_type_' + orderId).val(),
+                                "planDate": $('#select_date_' + orderId).val(),
+                            }
+                            getGroupInPlan(params)
+                                .done(function (res) {
+                                    var groups = res.data;
+                                    _.each(groups, function (value, index) {
+                                        newGroupOptions += '<option value="' + index + '">' + index + '</option>'
+                                    })
+                                    $('#select_group_' + orderId).empty();
+                                    $('#select_group_' + orderId).append(newGroupOptions);
+                                    checkSaveInfoStatus(orderId);
+                                }).fail(function () {
+                                    $('#select_group_' + orderId).empty();
+                                    $('#select_group_' + orderId).append(newGroupOptions);
                                 })
-                                $('#select_date_' + orderId).empty();
-                                $('#select_date_' + orderId).append(newDateOptions);
-                                $('#select_group_' + orderId).empty();
-                                $('#select_group_' + orderId).append(newGroupOptions);
-                                checkSaveInfoStatus(orderId);
-                            });
-                    })
-                    $("select[id^='select_date_']").change(function (e) {
-                        var orderId = e.target.dataset.orderId;
-                        var newGroupOptions = '<option selected>請選擇</option>';
-                        var params = {
-                            "planType": $('#select_type_' + orderId).val(),
-                            "planDate": $('#select_date_' + orderId).val(),
-                        }
-                        getGroupInPlan(params)
-                            .then(function (res) {
-                                var groups = res.data;
-                                _.each(groups, function (value, index) {
-                                    newGroupOptions += '<option value="' + index + '">' + index + '</option>'
-                                })
-                                $('#select_group_' + orderId).empty();
-                                $('#select_group_' + orderId).append(newGroupOptions);
-                                checkSaveInfoStatus(orderId);
-                            })
-                            .catch(function () {
-                                $('#select_group_' + orderId).empty();
-                                $('#select_group_' + orderId).append(newGroupOptions);
-                            })
-                    })
-                    $("select[id^='select_group_']").change(function(e) {
-                        var orderId = e.target.dataset.orderId;
-                        checkSaveInfoStatus(orderId);
-                    })
-                    $("input[id^='getInfo_']").click(function (e) {
-                        var orderId = e.target.dataset.orderId;
-                        setInfo(orderId);
-                    })
-                    $("input[id^='saveInfo_']").click(function (e) {
-                        var orderId = e.target.dataset.orderId;
-                        saveInfo(orderId);
-                    })
-                })
-            
+                        })
+                        $("select[id^='select_group_']").change(function (e) {
+                            var orderId = e.target.dataset.orderId;
+                            checkSaveInfoStatus(orderId);
+                        })
+                        $("input[id^='getInfo_']").click(function (e) {
+                            var orderId = e.target.dataset.orderId;
+                            setInfo(orderId);
+                        })
+                        $("input[id^='saveInfo_']").click(function (e) {
+                            var orderId = e.target.dataset.orderId;
+                            saveInfo(orderId);
+                        })
+                    }
+                })            
         })
+    }).fail( function(err) {
+        console.log(err);
     })
 }
 
