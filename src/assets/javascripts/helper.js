@@ -162,6 +162,7 @@ function goToPay(paymentForm) {
     formObject.submit();
 }
 function setLoading(show) {
+    console.log(show);
     if (show) {
         $('.Loading-box').removeClass('hide');
     } else {

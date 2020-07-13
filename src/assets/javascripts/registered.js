@@ -294,6 +294,8 @@ $('#postOrder').click(function() {
             postOrder(payload)
                 .done(function (res) {
                     data = res.data;
+                    paymentMerchantTradeNo = data.order.paymentMerchantTradeNo;
+                    sessionStorage.setItem('paymentMerchantTradeNo', paymentMerchantTradeNo);
                     if (data.message == 'goToPay') {
                         var formObject = data.paymentHtml;
                         goToPay(formObject);
