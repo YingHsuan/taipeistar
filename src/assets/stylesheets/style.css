@@ -615,7 +615,7 @@ ul.num-ch li .column {
 
     section#hp-main .main-content .column-lf .more-bt {
         clear: both;
-        width: 160px;
+        width: 90px;
         margin: 40px auto 0 auto;
     }
 
@@ -1496,15 +1496,48 @@ ul.num-ch li .column {
     footer .footer-text-box .social-icon img {
         margin: 0 20px;
     }
-    
-    footer .support-logo-box { width: 100%; padding: 0 60px; box-sizing: border-box;}
-    footer .support-logo-box .host-logo { width: 100%; margin: 0 0 20px 0; color: #fff; display: flex; justify-content: center; align-items: center;}
-    footer .support-logo-box .host-logo img.footer-tia-logo { width: 200px; height: auto;}
-    footer .support-logo-box .co-org-logo { width: 100%; margin: 0 0 20px 0; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
-    footer .support-logo-box .co-org-logo .caption { width: 100%; margin: 0 0 20px 0; color: #fff; text-align: center;}
-    footer .support-logo-box .co-org-logo img { margin: 0 20px 20px 20px;}
 
-    
+    footer .support-logo-box {
+        width: 100%;
+        padding: 0 60px;
+        box-sizing: border-box;
+    }
+
+    footer .support-logo-box .host-logo {
+        width: 100%;
+        margin: 0 0 20px 0;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    footer .support-logo-box .host-logo img.footer-tia-logo {
+        width: 200px;
+        height: auto;
+    }
+
+    footer .support-logo-box .co-org-logo {
+        width: 100%;
+        margin: 0 0 20px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    footer .support-logo-box .co-org-logo .caption {
+        width: 100%;
+        margin: 0 0 20px 0;
+        color: #fff;
+        text-align: center;
+    }
+
+    footer .support-logo-box .co-org-logo img {
+        margin: 0 20px 20px 20px;
+    }
+
+
 }
 
 
@@ -1702,7 +1735,7 @@ ul.num-ch li .column {
 
     section#hp-main .main-content .column-lf .more-bt {
         clear: both;
-        width: 160px;
+        width: 90px;
         margin: 40px auto 0 auto;
     }
 
@@ -2635,14 +2668,54 @@ ul.num-ch li .column {
     footer .footer-text-box .social-icon img {
         margin: 0 20px;
     }
-    
-    footer .support-logo-box { width: 100%; padding: 0 60px; box-sizing: border-box;}
-    footer .support-logo-box .host-logo { width: 100%; margin: 0 0 20px 0; color: #fff; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
-    footer .support-logo-box .host-logo .caption { width: 100%; margin: 0 0 20px 0; color: #fff; text-align: center;}
-    footer .support-logo-box .host-logo img.footer-tia-logo { width: 200px; height: auto;}
-    footer .support-logo-box .co-org-logo { width: 100%; margin: 0 0 20px 0; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
-    footer .support-logo-box .co-org-logo .caption { width: 100%; margin: 0 0 20px 0; color: #fff; text-align: center;}
-    footer .support-logo-box .co-org-logo img { margin: 0 20px 20px 20px;}
+
+    footer .support-logo-box {
+        width: 100%;
+        padding: 0 60px;
+        box-sizing: border-box;
+    }
+
+    footer .support-logo-box .host-logo {
+        width: 100%;
+        margin: 0 0 20px 0;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    footer .support-logo-box .host-logo .caption {
+        width: 100%;
+        margin: 0 0 20px 0;
+        color: #fff;
+        text-align: center;
+    }
+
+    footer .support-logo-box .host-logo img.footer-tia-logo {
+        width: 200px;
+        height: auto;
+    }
+
+    footer .support-logo-box .co-org-logo {
+        width: 100%;
+        margin: 0 0 20px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    footer .support-logo-box .co-org-logo .caption {
+        width: 100%;
+        margin: 0 0 20px 0;
+        color: #fff;
+        text-align: center;
+    }
+
+    footer .support-logo-box .co-org-logo img {
+        margin: 0 20px 20px 20px;
+    }
 
 
 }
@@ -2842,7 +2915,7 @@ ul.num-ch li .column {
 
     section#hp-main .main-content .column-lf .more-bt {
         clear: both;
-        width: 160px;
+        width: 90px;
         margin: 40px auto 0 auto;
     }
 
@@ -3113,7 +3186,7 @@ ul.num-ch li .column {
         left: 0;
     }
 
-    section#page-registered .text-content .bg-top .reg-title img.reg-title-pic {
+    section#page-registered .text-content .bg-top .reg-title img {
         width: 50%;
         height: auto;
     }
@@ -3792,14 +3865,54 @@ ul.num-ch li .column {
     footer .footer-text-box .social-icon img {
         margin: 0 20px;
     }
-    
-    footer .support-logo-box { width: 100%; padding: 0 20px; box-sizing: border-box;}
-    footer .support-logo-box .host-logo { width: 100%; margin: 0 0 20px 0; color: #fff; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
-    footer .support-logo-box .host-logo .caption { width: 100%; margin: 0 0 20px 0; color: #fff; text-align: center;}
-    footer .support-logo-box .host-logo img.footer-tia-logo { width: 200px; height: auto;}
-    footer .support-logo-box .co-org-logo { width: 100%; margin: 0 0 20px 0; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
-    footer .support-logo-box .co-org-logo .caption { width: 100%; margin: 0 0 20px 0; color: #fff; text-align: center;}
-    footer .support-logo-box .co-org-logo img { margin: 0 20px 20px 20px;}
+
+    footer .support-logo-box {
+        width: 100%;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    footer .support-logo-box .host-logo {
+        width: 100%;
+        margin: 0 0 20px 0;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    footer .support-logo-box .host-logo .caption {
+        width: 100%;
+        margin: 0 0 20px 0;
+        color: #fff;
+        text-align: center;
+    }
+
+    footer .support-logo-box .host-logo img.footer-tia-logo {
+        width: 200px;
+        height: auto;
+    }
+
+    footer .support-logo-box .co-org-logo {
+        width: 100%;
+        margin: 0 0 20px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    footer .support-logo-box .co-org-logo .caption {
+        width: 100%;
+        margin: 0 0 20px 0;
+        color: #fff;
+        text-align: center;
+    }
+
+    footer .support-logo-box .co-org-logo img {
+        margin: 0 20px 20px 20px;
+    }
 
 
 }
@@ -4028,7 +4141,7 @@ ul.num-ch li .column {
 
     section#hp-main .main-content .column-lf .more-bt {
         clear: both;
-        width: 160px;
+        width: 90px;
         margin: 40px auto 0 auto;
     }
 
@@ -4317,7 +4430,7 @@ ul.num-ch li .column {
         left: 0;
     }
 
-    section#page-registered .text-content .bg-top .reg-title img.reg-title-pic {
+    section#page-registered .text-content .bg-top .reg-title img {
         width: 50%;
         height: auto;
     }
@@ -4975,14 +5088,54 @@ ul.num-ch li .column {
     footer .footer-text-box .social-icon img {
         margin: 0 20px;
     }
-    
-    footer .support-logo-box { width: 100%; padding: 0 10px; box-sizing: border-box;}
-    footer .support-logo-box .host-logo { width: 100%; margin: 0 0 20px 0; color: #fff; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
-    footer .support-logo-box .host-logo .caption { width: 100%; margin: 0 0 20px 0; color: #fff; text-align: center;}
-    footer .support-logo-box .host-logo img.footer-tia-logo { width: 200px; height: auto;}
-    footer .support-logo-box .co-org-logo { width: 100%; margin: 0 0 20px 0; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
-    footer .support-logo-box .co-org-logo .caption { width: 100%; margin: 0 0 20px 0; color: #fff; text-align: center;}
-    footer .support-logo-box .co-org-logo img { margin: 0 20px 20px 20px;}
+
+    footer .support-logo-box {
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    footer .support-logo-box .host-logo {
+        width: 100%;
+        margin: 0 0 20px 0;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    footer .support-logo-box .host-logo .caption {
+        width: 100%;
+        margin: 0 0 20px 0;
+        color: #fff;
+        text-align: center;
+    }
+
+    footer .support-logo-box .host-logo img.footer-tia-logo {
+        width: 200px;
+        height: auto;
+    }
+
+    footer .support-logo-box .co-org-logo {
+        width: 100%;
+        margin: 0 0 20px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    footer .support-logo-box .co-org-logo .caption {
+        width: 100%;
+        margin: 0 0 20px 0;
+        color: #fff;
+        text-align: center;
+    }
+
+    footer .support-logo-box .co-org-logo img {
+        margin: 0 20px 20px 20px;
+    }
 
 
 }
