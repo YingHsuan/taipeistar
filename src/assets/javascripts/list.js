@@ -226,7 +226,7 @@ function getOrders(availablePlans) {
                         '</select>' +
                         '</td>' +
                         '<td>' + order.people[0].name + '</td>' +
-                        '<td>' + order.people[0].email + '</td>' +
+                        '<td>' + order.people[0].phone + '</td>' +
                         '<td>' + numOfAdult + '</td>' +
                         '<td>' + numOfChild + '</td>' +
                         '<td>' + (numOfAdult + numOfChild) + '</td>' +
