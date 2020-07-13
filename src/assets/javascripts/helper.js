@@ -161,8 +161,20 @@ function goToPay(paymentForm) {
     $(document.body).append(formObject);
     formObject.submit();
 }
+function paymentCallbacksByTradeNo(paymentMerchantTradeNo) {
+    var defer = $.Deferred();
+    axios.get('/api/payment-callbacks/' + paymentMerchantTradeNo, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then(function (res) {
+        defer.resolve(res);
+    }).catch(function (error) {
+        defer.reject(error);
+    });
+    return defer;
+}
 function setLoading(show) {
-    console.log(show);
     if (show) {
         $('.Loading-box').removeClass('hide');
     } else {
