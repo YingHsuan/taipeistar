@@ -7,3 +7,7 @@
 #postOrder:hover {
     cursor: pointer;
 }
+.main-contact {
+    font-weight: bold;
+    color:#FF0000;
+}

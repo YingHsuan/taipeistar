@@ -102,14 +102,16 @@ function appendPeopleForm() {
     var item = '';
     var nameTitle = '';
     var numOfPeople = $('.person-table-box').length;
+    var mainClass = '';
     
     if (numOfPeople == 0) {
         nameTitle = '主要聯絡人';
+        mainClass = 'main-contact';
     } else {
         nameTitle = '團員姓名' + numOfPeople;
     }
     item = '<div class="person-table-box">'+
-                '<div class="caption">' + nameTitle + '：</div>' +
+                '<div class="caption '+mainClass+'">' + nameTitle + '：</div>' +
                 '<div class="column"><input id="name-' + numOfPeople + '" type="text"><font id="error-name-'+numOfPeople+'" class="red error hide">請填寫</font></div>' +
                 '<div class="caption">性別：</div>'+
                 '<div class="column"><input name="gender-' + numOfPeople + '" type="radio" value="男" checked>男&nbsp;&nbsp;<input name="gender-' + numOfPeople + '" type="radio" value="女">女</div>' +
