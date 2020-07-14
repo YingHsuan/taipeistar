@@ -153,9 +153,9 @@ function getOrders(availablePlans) {
         };
         resultAvailablePlanType = _.map(_.uniqBy(availablePlans, 'planType'), 'planType');
         $('#list').empty();
-        var orderItem = '';
+        var orderItem = [];
         var count = 0;
-        _.each(orders, function(order) {
+        _.each(orders, function(order, orderIndex) {
             var c_accomodation = (order.accomodation)?'有':'無';
             var numOfAdult = order.numberOfAdults;
             var numOfChild = order.numberOfChildren;
@@ -208,13 +208,12 @@ function getOrders(availablePlans) {
             }
             getGroupInPlan(params)
                 .done(function (res) {
-                    count +=1;
                     var groups = res.data;
                     _.each(groups, function (t, index) {
                         var selected = index == order.groupName ? "selected" : "";
                         groupOptions += '<option ' + selected + ' value="' + index + '">' + index + '</option>';
                     })
-                    orderItem += '<tr><td>' + order.id + '</td>' +
+                    orderItem[orderIndex] = '<tr><td>' + order.id + '</td>' +
                         '<td>' +
                         '<select id="select_type_' + order.id + '" data-order-id="' + order.id + '">' +
                         typeOptions +
@@ -248,8 +247,13 @@ function getOrders(availablePlans) {
                         '<td>' + order.registrationDate + '</td>' +
                         '<td><input id="saveInfo_' + order.id + '" type="button" value="儲存" data-order-id="' + order.id + '"></td></tr>'
                     
+                }).always(function() {
+                    count += 1;
                     if (count == orders.length) {
-                        $('#list').append(orderItem);
+                        _.each(orderItem, function (value) {
+                            console.log(value);
+                            $('#list').append(value);
+                        })
                         $("select[id^='select_type_']").change(function (e) {
                             var selectedValue = e.target.value;
                             var orderId = e.target.dataset.orderId;
@@ -305,7 +309,7 @@ function getOrders(availablePlans) {
                             saveInfo(orderId);
                         })
                     }
-                })            
+                })           
         })
     }).fail( function(err) {
         console.log(err);
