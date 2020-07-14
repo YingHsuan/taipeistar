@@ -188,7 +188,7 @@ function getOrders(availablePlans) {
             }
             var paymentSucc = '';
             var paymentFail = '';
-            if (order.paymentDone) {
+            if (order.paymentDone == true && order.deleted == false) {
                 paymentSucc = 'selected';
             } else {
                 paymentFail = 'selected';
@@ -330,7 +330,11 @@ function setInfo(orderId) {
             var numberOfChildren = info.numberOfChildren;
             var groupName = info.groupName;
             var comment = info.comment;
-            var paymentDone = (info.paymentDone)?'成功':'取消';
+            var c_paymentDone = '取消';
+            if (info.paymentDone == true && info.deleted == false) {
+                c_paymentDone = '成功';
+            };
+            var paymentDone = c_paymentDone;
             var paymentMerchantTradeNo = info.paymentMerchantTradeNo;
             var registrationDate = info.registrationDate;
             var person = '';
