@@ -51,13 +51,14 @@ function checkEnableSendMail() {
 }
 function setPlanType(plans) {
     var planTypes = [];
-    var options = '<option selected>不限</option>';
-    _.each(plans, function(plan){
-    var planType = plan.planType;
-    if (!planTypes.includes(planType)) {
-        planTypes.push(planType);
-        options += '<option>' + planType + '</option>';
-    }
+    var options = '<option>不限</option>';
+    _.each(plans, function(plan, index){
+        var selected = (index == 0) ? 'selected':'';
+        var planType = plan.planType;
+        if (!planTypes.includes(planType)) {
+            planTypes.push(planType);
+            options += '<option '+selected+'>' + planType + '</option>';
+        }
     });
     $('#planType').empty();
     $('#planType').append(options);
@@ -69,13 +70,14 @@ function setPlanDate() {
             var planType = $('#planType').val();
             plans = _.filter(plans, {'planType': planType})
             var planDates = [];
-            var options = '<option selected>不限</option>';
-            _.each(plans, function (plan) {
+            var options = '<option>不限</option>';
+            _.each(plans, function (plan, index) {
+                var selected = (index == 0) ? 'selected' : '';
                 var planDate = plan.date;
                 var dayOfWeek = plan.dayOfWeek;
                 if (!planDates.includes(planDate)) {
                     planDates.push(planDate);
-                    options += '<option value="' + planDate +'">' + planDate + '('+dayOfWeek+')</option>';
+                    options += '<option value="' + planDate +'" '+ selected+'>' + planDate + '('+dayOfWeek+')</option>';
                 }
             });
             $('#planDate').empty();
@@ -251,7 +253,6 @@ function getOrders(availablePlans) {
                     count += 1;
                     if (count == orders.length) {
                         _.each(orderItem, function (value) {
-                            console.log(value);
                             $('#list').append(value);
                         })
                         $("select[id^='select_type_']").change(function (e) {
