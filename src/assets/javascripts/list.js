@@ -479,10 +479,11 @@ function sendMail() {
         })
 }
 function exportOrders() {
-    getExportOrders()
-        .done(function(res){
-            console.log(res);
-        }).fail(function(err) {
-            console.log(err)
-        })
+    window.location = '/api/export/orders';
+    // getExportOrders()
+    //     .done(function(res){
+    //         console.log(res);
+    //     }).fail(function(err) {
+    //         console.log(err)
+    //     })
 }
