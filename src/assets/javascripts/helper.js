@@ -144,7 +144,8 @@ function validateID(id) {
 }
 function calculate_age(dob) {
     dob = new Date(dob);
-    var today = new Date();
+    // var today = new Date();
+    var today = new Date("2020-09-01");
     var age = Math.floor((today - dob) / (365.25 * 24 * 60 * 60 * 1000));
 
     return age;
