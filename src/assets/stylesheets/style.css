@@ -378,7 +378,8 @@ section#booking-page a:hover {
     color: #2c96d0;
 }
 
-
+section#not-found-page { clear: both; width: 100%; padding: 100px 20px; font-size: 3em; font-weight: 600; text-align: center; box-sizing: border-box;}
+section#not-found-page input[type=button].oops { padding: 5px 30px; color: #fff; font:0.4em "Noto Sans TC", sans-serif, "微軟正黑體", Arial; font-weight: 300; border: 0; border-radius: 6px; background-color: #2c96d0; cursor: pointer;}
 
 .exp-caption-s1 {
     width: 60px;
@@ -1422,6 +1423,91 @@ ul.num-ch li .column {
         top: -5vw;
         right: 10vw;
     }
+    
+    section#booking-page
+    {
+        width:100%;
+        padding:60px calc(50% - 600px);
+        box-sizing:border-box
+    }
+
+    section#booking-page .title
+    {
+        width:100%;
+        margin:0 0 40px;
+        font-size:1.6em;
+        font-weight:600;
+        text-align:center;
+        border-bottom:1px #ccc solid
+    }
+
+    section#booking-page .content-box
+    {
+        clear:both;
+        width:100%;
+        padding:40px 0;
+        font-size:1.1em;
+        line-height:1.8em;
+        box-sizing:border-box
+    }
+
+    section#booking-page .content-box .price-table
+    {
+        width:100%;
+        margin:20px 0 0;
+        line-height:1.4em;
+        border:2px #ccc solid;
+        display:flex;
+        justify-content:flex-start;
+        align-items:stretch;
+        flex-wrap:wrap
+    }
+
+    section#booking-page .content-box .price-table .caption
+    {
+        width:35%;
+        padding:20px 10px;
+        text-align:center;
+        box-sizing:border-box
+    }
+
+    section#booking-page .content-box .price-table .column-1
+    {
+        width:30%;
+        padding:20px 10px;
+        text-align:center;
+        box-sizing:border-box
+    }
+
+    section#booking-page .content-box .price-table .column-2
+    {
+        width:35%;
+        padding:20px 10px;
+        text-align:center;
+        box-sizing:border-box
+    }
+
+    section#booking-page .content-box .price-table .border-rt
+    {
+        border-right:1px #ccc solid
+    }
+
+    section#booking-page .content-box .price-table .border-bt
+    {
+        border-bottom:1px #ccc solid
+    }
+
+    section#booking-page a
+    {
+        color:#414141;
+        border-bottom:1px #414141 dashed;
+        text-decoration:none
+    }
+
+    section#booking-page a:hover
+    {
+        color:#2c96d0
+    }
 
 
     /*************** footer ***************/
@@ -1503,39 +1589,19 @@ ul.num-ch li .column {
         box-sizing: border-box;
     }
 
-    footer .support-logo-box .host-logo {
-        width: 100%;
-        margin: 0 0 20px 0;
-        color: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    footer .support-logo-box .host-logo img.footer-tia-logo {
-        width: 200px;
-        height: auto;
-    }
-
-    footer .support-logo-box .co-org-logo {
-        width: 100%;
-        margin: 0 0 20px 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    footer .support-logo-box .co-org-logo .caption {
-        width: 100%;
-        margin: 0 0 20px 0;
-        color: #fff;
-        text-align: center;
-    }
-
-    footer .support-logo-box .co-org-logo img {
-        margin: 0 20px 20px 20px;
-    }
+    footer .support-logo-box .host-logo { width: 100%; margin: 0 0 20px 0; color: #fff; display: flex; justify-content: center; align-items: center;}
+    footer .support-logo-box .host-logo img.footer-tia-logo { width: 200px; height: auto;}
+    footer .support-logo-box .host-logo img.footer-logo-host { width: 180px; height: auto;}
+    footer .support-logo-box .co-org-logo { width: 100%; margin: 0 0 20px 0; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
+    footer .support-logo-box .co-org-logo .caption { width: 100%; margin: 0 0 20px 0; color: #fff; text-align: center;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s1 { width: 140px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s2 { width: 120px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s3 { width: 120px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s4 { width: 180px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s5 { width: 100px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s6 { width: 140px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s7 { width: 120px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s8 { width: 200px; height: auto; margin: 0 20px 20px 20px;}
 
 
 }
@@ -2594,6 +2660,91 @@ ul.num-ch li .column {
         top: -5vw;
         right: 10vw;
     }
+    
+    section#booking-page
+    {
+        width:100%;
+        padding:60px calc(50% - 600px);
+        box-sizing:border-box
+    }
+
+    section#booking-page .title
+    {
+        width:100%;
+        margin:0 0 40px;
+        font-size:1.6em;
+        font-weight:600;
+        text-align:center;
+        border-bottom:1px #ccc solid
+    }
+
+    section#booking-page .content-box
+    {
+        clear:both;
+        width:100%;
+        padding:40px 0;
+        font-size:1.1em;
+        line-height:1.8em;
+        box-sizing:border-box
+    }
+
+    section#booking-page .content-box .price-table
+    {
+        width:100%;
+        margin:20px 0 0;
+        line-height:1.4em;
+        border:2px #ccc solid;
+        display:flex;
+        justify-content:flex-start;
+        align-items:stretch;
+        flex-wrap:wrap
+    }
+
+    section#booking-page .content-box .price-table .caption
+    {
+        width:35%;
+        padding:20px 10px;
+        text-align:center;
+        box-sizing:border-box
+    }
+
+    section#booking-page .content-box .price-table .column-1
+    {
+        width:30%;
+        padding:20px 10px;
+        text-align:center;
+        box-sizing:border-box
+    }
+
+    section#booking-page .content-box .price-table .column-2
+    {
+        width:35%;
+        padding:20px 10px;
+        text-align:center;
+        box-sizing:border-box
+    }
+
+    section#booking-page .content-box .price-table .border-rt
+    {
+        border-right:1px #ccc solid
+    }
+
+    section#booking-page .content-box .price-table .border-bt
+    {
+        border-bottom:1px #ccc solid
+    }
+
+    section#booking-page a
+    {
+        color:#414141;
+        border-bottom:1px #414141 dashed;
+        text-decoration:none
+    }
+
+    section#booking-page a:hover
+    {
+        color:#2c96d0
+    }
 
 
     /*************** footer ***************/
@@ -2675,47 +2826,19 @@ ul.num-ch li .column {
         box-sizing: border-box;
     }
 
-    footer .support-logo-box .host-logo {
-        width: 100%;
-        margin: 0 0 20px 0;
-        color: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    footer .support-logo-box .host-logo .caption {
-        width: 100%;
-        margin: 0 0 20px 0;
-        color: #fff;
-        text-align: center;
-    }
-
-    footer .support-logo-box .host-logo img.footer-tia-logo {
-        width: 200px;
-        height: auto;
-    }
-
-    footer .support-logo-box .co-org-logo {
-        width: 100%;
-        margin: 0 0 20px 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    footer .support-logo-box .co-org-logo .caption {
-        width: 100%;
-        margin: 0 0 20px 0;
-        color: #fff;
-        text-align: center;
-    }
-
-    footer .support-logo-box .co-org-logo img {
-        margin: 0 20px 20px 20px;
-    }
+    footer .support-logo-box .host-logo { width: 100%; margin: 0 0 20px 0; color: #fff; display: flex; justify-content: center; align-items: center;}
+    footer .support-logo-box .host-logo img.footer-tia-logo { width: 200px; height: auto;}
+    footer .support-logo-box .host-logo img.footer-logo-host { width: 180px; height: auto;}
+    footer .support-logo-box .co-org-logo { width: 100%; margin: 0 0 20px 0; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
+    footer .support-logo-box .co-org-logo .caption { width: 100%; margin: 0 0 20px 0; color: #fff; text-align: center;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s1 { width: 140px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s2 { width: 120px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s3 { width: 120px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s4 { width: 180px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s5 { width: 100px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s6 { width: 140px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s7 { width: 120px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s8 { width: 200px; height: auto; margin: 0 20px 20px 20px;}
 
 
 }
@@ -3791,6 +3914,92 @@ ul.num-ch li .column {
         top: -2vw;
         right: 3vw;
     }
+    
+    
+    section#booking-page
+    {
+        width:100%;
+        padding:60px 40px;
+        box-sizing:border-box
+    }
+
+    section#booking-page .title
+    {
+        width:100%;
+        margin:0 0 40px;
+        font-size:1.6em;
+        font-weight:600;
+        text-align:center;
+        border-bottom:1px #ccc solid
+    }
+
+    section#booking-page .content-box
+    {
+        clear:both;
+        width:100%;
+        padding:40px 0;
+        font-size:1.1em;
+        line-height:1.8em;
+        box-sizing:border-box
+    }
+
+    section#booking-page .content-box .price-table
+    {
+        width:100%;
+        margin:20px 0 0;
+        line-height:1.4em;
+        border:2px #ccc solid;
+        display:flex;
+        justify-content:flex-start;
+        align-items:stretch;
+        flex-wrap:wrap
+    }
+
+    section#booking-page .content-box .price-table .caption
+    {
+        width:35%;
+        padding:20px 10px;
+        text-align:center;
+        box-sizing:border-box
+    }
+
+    section#booking-page .content-box .price-table .column-1
+    {
+        width:30%;
+        padding:20px 10px;
+        text-align:center;
+        box-sizing:border-box
+    }
+
+    section#booking-page .content-box .price-table .column-2
+    {
+        width:35%;
+        padding:20px 10px;
+        text-align:center;
+        box-sizing:border-box
+    }
+
+    section#booking-page .content-box .price-table .border-rt
+    {
+        border-right:1px #ccc solid
+    }
+
+    section#booking-page .content-box .price-table .border-bt
+    {
+        border-bottom:1px #ccc solid
+    }
+
+    section#booking-page a
+    {
+        color:#414141;
+        border-bottom:1px #414141 dashed;
+        text-decoration:none
+    }
+
+    section#booking-page a:hover
+    {
+        color:#2c96d0
+    }
 
 
     /*************** footer ***************/
@@ -3872,47 +4081,19 @@ ul.num-ch li .column {
         box-sizing: border-box;
     }
 
-    footer .support-logo-box .host-logo {
-        width: 100%;
-        margin: 0 0 20px 0;
-        color: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    footer .support-logo-box .host-logo .caption {
-        width: 100%;
-        margin: 0 0 20px 0;
-        color: #fff;
-        text-align: center;
-    }
-
-    footer .support-logo-box .host-logo img.footer-tia-logo {
-        width: 200px;
-        height: auto;
-    }
-
-    footer .support-logo-box .co-org-logo {
-        width: 100%;
-        margin: 0 0 20px 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    footer .support-logo-box .co-org-logo .caption {
-        width: 100%;
-        margin: 0 0 20px 0;
-        color: #fff;
-        text-align: center;
-    }
-
-    footer .support-logo-box .co-org-logo img {
-        margin: 0 20px 20px 20px;
-    }
+    footer .support-logo-box .host-logo { width: 100%; margin: 0 0 20px 0; color: #fff; display: flex; justify-content: center; align-items: center;}
+    footer .support-logo-box .host-logo img.footer-tia-logo { width: 200px; height: auto;}
+    footer .support-logo-box .host-logo img.footer-logo-host { width: 180px; height: auto;}
+    footer .support-logo-box .co-org-logo { width: 100%; margin: 0 0 20px 0; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
+    footer .support-logo-box .co-org-logo .caption { width: 100%; margin: 0 0 20px 0; color: #fff; text-align: center;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s1 { width: 140px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s2 { width: 120px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s3 { width: 120px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s4 { width: 180px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s5 { width: 100px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s6 { width: 140px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s7 { width: 120px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s8 { width: 200px; height: auto; margin: 0 20px 20px 20px;}
 
 
 }
@@ -5014,6 +5195,91 @@ ul.num-ch li .column {
         display: none;
     }
 
+    section#booking-page
+    {
+        width:100%;
+        padding:60px 20px;
+        box-sizing:border-box
+    }
+
+    section#booking-page .title
+    {
+        width:100%;
+        margin:0 0 40px;
+        font-size:1.6em;
+        font-weight:600;
+        text-align:center;
+        border-bottom:1px #ccc solid
+    }
+
+    section#booking-page .content-box
+    {
+        clear:both;
+        width:100%;
+        padding:40px 0;
+        font-size:1.1em;
+        line-height:1.8em;
+        box-sizing:border-box
+    }
+
+    section#booking-page .content-box .price-table
+    {
+        width:100%;
+        margin:20px 0 0;
+        line-height:1.4em;
+        border:2px #ccc solid;
+        display:flex;
+        justify-content:flex-start;
+        align-items:stretch;
+        flex-wrap:wrap
+    }
+
+    section#booking-page .content-box .price-table .caption
+    {
+        width:35%;
+        padding:20px 10px;
+        text-align:center;
+        box-sizing:border-box
+    }
+
+    section#booking-page .content-box .price-table .column-1
+    {
+        width:30%;
+        padding:20px 10px;
+        text-align:center;
+        box-sizing:border-box
+    }
+
+    section#booking-page .content-box .price-table .column-2
+    {
+        width:35%;
+        padding:20px 10px;
+        text-align:center;
+        box-sizing:border-box
+    }
+
+    section#booking-page .content-box .price-table .border-rt
+    {
+        border-right:1px #ccc solid
+    }
+
+    section#booking-page .content-box .price-table .border-bt
+    {
+        border-bottom:1px #ccc solid
+    }
+
+    section#booking-page a
+    {
+        color:#414141;
+        border-bottom:1px #414141 dashed;
+        text-decoration:none
+    }
+
+    section#booking-page a:hover
+    {
+        color:#2c96d0
+    }
+    
 
     /*************** footer ***************/
 
@@ -5095,47 +5361,19 @@ ul.num-ch li .column {
         box-sizing: border-box;
     }
 
-    footer .support-logo-box .host-logo {
-        width: 100%;
-        margin: 0 0 20px 0;
-        color: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    footer .support-logo-box .host-logo .caption {
-        width: 100%;
-        margin: 0 0 20px 0;
-        color: #fff;
-        text-align: center;
-    }
-
-    footer .support-logo-box .host-logo img.footer-tia-logo {
-        width: 200px;
-        height: auto;
-    }
-
-    footer .support-logo-box .co-org-logo {
-        width: 100%;
-        margin: 0 0 20px 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    footer .support-logo-box .co-org-logo .caption {
-        width: 100%;
-        margin: 0 0 20px 0;
-        color: #fff;
-        text-align: center;
-    }
-
-    footer .support-logo-box .co-org-logo img {
-        margin: 0 20px 20px 20px;
-    }
+    footer .support-logo-box .host-logo { width: 100%; margin: 0 0 20px 0; color: #fff; display: flex; justify-content: center; align-items: center;}
+    footer .support-logo-box .host-logo img.footer-tia-logo { width: 200px; height: auto;}
+    footer .support-logo-box .host-logo img.footer-logo-host { width: 180px; height: auto;}
+    footer .support-logo-box .co-org-logo { width: 100%; margin: 0 0 20px 0; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
+    footer .support-logo-box .co-org-logo .caption { width: 100%; margin: 0 0 20px 0; color: #fff; text-align: center;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s1 { width: 140px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s2 { width: 120px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s3 { width: 120px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s4 { width: 180px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s5 { width: 100px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s6 { width: 140px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s7 { width: 120px; height: auto; margin: 0 20px 20px 20px;}
+    footer .support-logo-box .co-org-logo img.footer-logo-s8 { width: 200px; height: auto; margin: 0 20px 20px 20px;}
 
 
 }
