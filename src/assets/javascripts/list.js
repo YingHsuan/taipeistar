@@ -174,7 +174,7 @@ function getOrders(availablePlans) {
                 typeOptions += '<option ' + selected + ' value="'+t+'">' + t + '</option>';
             })
             if (!typeHasSelected) {
-                typeOptions += '<option selected value="'+order.planType+'">' + t + '</option>';
+                typeOptions += '<option selected value="'+order.planType+'">' + order.planType + '</option>';
             }
             var dateHasSelected = false;
             _.each(resultAvailablePlanDate, function (t) {
